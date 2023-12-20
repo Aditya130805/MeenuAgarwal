@@ -1,0 +1,364 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.content{
+    min-height: 85px;
+    height: auto;
+    width: 100%;
+}
+
+.landingScreen{ 
+    height: 638px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(rgb(255, 255, 255), rgb(225, 225, 225)); /* Forms a gradient color in the shape of circles with the first color being the one on the inside and the second color being the one on the outside */
+}
+
+.landingScreen .landingScreenImg{
+    width: 40%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.landingScreenText{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Arranges the elements in a column instead of in a row (the default) */
+    justify-content: center; /* centers the items on the vertical axis - reversed because the direction was reversed */
+    color: black;
+    padding: 0 5px 0 75px; /* spacing included in the height and width of the elements */
+}
+
+.landingScreenText .firstText{
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0px 0 45px 0; /* top right bottom left - clockwise margins */
+}
+
+.landingScreenText .secondText{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16.9px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 45px;
+    line-height: 30px;
+}
+
+.landingScreenText .thirdText{
+    background-color: rgb(246, 74, 60);
+    height: 45px;
+    width: 150px;
+    border-radius: 100px; /* curving the borders */
+    display: flex;
+    justify-content: center; /* Horizontally placing the elements inside in the center */
+    align-items: center;
+    font-weight: 600;
+    color: black;
+}
+
+.why_us{
+    min-height: 400px;
+    height: auto;
+    width: 100%;
+    background: linear-gradient(99deg, rgba(35, 105, 138, 0.9), rgb(28, 84, 109));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 7% 50px 7%;
+}
+
+
+.sectionTitle{
+    font-size: 50px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 40px;
+    padding: 0 25px;
+    text-align: center;
+}
+
+.sectionText{
+    font-size: 18px;
+    line-height: 32px;
+    color: white;
+}
+
+.testimonials{
+    position: relative;
+    height: 520px;
+    width: 100%;
+    background: radial-gradient(rgb(255, 255, 255), rgb(225, 225, 225));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.slider_container{
+    width: 80%;
+    height: 300px;
+    position: relative;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+    overflow: hidden;
+}
+#slider{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+.card1{
+    width: 100%;
+    min-height: 300px;
+    height: auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+
+.studentDetails{
+    height: 300px;
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.studentPicture{
+    height: 135px;
+    width: 135px;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 25px;
+}
+.studentName, .studentUniversityName{
+    font-size: 18px;
+    font-weight: 800;
+    color: black;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0 10px 0 10px;
+}
+.studentInfoOnly{
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
+}
+.testimonialText{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 50px;
+    line-height: 40px;
+}
+.testimonialText i{
+    font-size: 20px;
+    font-weight: 400;
+}
+.testimonialText i span{
+    font-size: 30px;
+    font-weight: 500;
+}
+.indicators{
+    position: absolute; /* Positions this element in accordance with its parent element - slider_container*/
+    left: 55%;
+    bottom: 20px;
+}
+.indicators span{
+    display: inline-block; /* occupies only the given space so that elements can be placed side-by-side */
+    width: 10px;
+    height: 10px; 
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.button_active{
+    background-color: #000 !important; /* the !important is required to make this property the priority over all of the other properties given */
+}
+
+.faq_container{
+    width: 100%;
+    height: auto;
+    background: linear-gradient(99deg, 
+    rgba(35, 105, 138, 0.9), rgb(28, 84, 109));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.allFaqs{
+    width: 100%;
+    min-height: 250px;
+    margin-bottom: 50px;
+}
+
+.faq{
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.01);
+    padding: 10px 150px 10px 50px;
+    cursor: pointer;
+}
+
+.question{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    line-height: 0;
+    text-align: justify;
+}
+
+.question p{
+    font-size: 22px;
+    color: white;
+    width: 600px;
+    line-height: 0;
+}
+
+.answer{
+    font-size: 18px;
+    line-height: 30px;
+    padding-left: 2%;
+    margin-top: 20px;
+    margin-right: 10%;
+    max-height: 0px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* gives the border at the bottom of the element */
+    overflow: hidden;
+    color: rgb(240, 240, 240);
+    transition: max-height 1.4s ease;
+}
+
+.answer p{
+    color: white;
+}
+
+.faqActive .answer{
+    max-height: 300px;
+    animation: fade 0.5s ease-in-out; /* carries out the animation specified in the given time and style */
+}
+
+.faqActive i{
+    transform: rotate(180deg); /* rotating the down arrow 180 deg to turn it into an up arrow */
+}
+
+i{
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Creating the animation for the text in the FAQ dropdown */
+@keyframes fade{
+    from{
+        opacity: 0;
+        transform: translateY(-10px)
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px)
+    }
+}
+
+/* Media queries */
+
+@media only screen and (max-width: 1065px){
+    /* First section */
+    .landingScreenText .firstText{font-size: 45px;}
+    .landingScreenText .secondText{font-size: 15px;}
+    /* Third section */
+    .slider_container{width: 90%;}
+    .testimonialText i{padding-bottom: 25px;}
+}
+
+@media only screen and (max-width: 810px){
+    /* Fourth section */
+    .faq{padding: 10px 25px;}
+}
+
+@media only screen and (max-width: 755px){
+    /* First section */
+    .landingScreenText{width: 90%;}
+    .landingScreen .landingScreenImg{display: none;}
+    .landingScreenText .firstText{font-size: 50px;}
+    .landingScreenText .secondText{font-size: 16.9px;}
+    /* Third section */
+    .slider_container{width: 95%;}
+    .testimonialText i{padding-bottom: 25px; font-size: 16px;}
+    /* Fourth section */
+    .faq{padding: 10px 0 10px 15px;}
+}
+
+@media only screen and (max-width: 625px){
+    /* First section */
+    .landingScreenText{padding: 0 5px 0 35px; width: 90%;}
+    .landingScreen .landingScreenImg{display: none;}
+    .landingScreenText .firstText{font-size: 40px;}
+    .landingScreenText .secondText{font-size: 15px;}
+    /* Fourth section */
+    .faq{padding: 10px 0 10px 15px;}
+    .question{font-size: 18px;}
+    .answer{font-size: 16px;}
+}
+
+@media only screen and (max-width: 605px){
+    /* Third section */
+    .slider_container{width: 95%;}
+    .testimonialText i{padding-bottom: 25px; font-size: 16px; line-height: 30px;}
+    .studentPicture{height: 100px; width: 100px;}
+    .studentName, .studentUniversityName, .studentInfoOnly{font-size: 16px;}
+    .testimonialText i span{font-size: 20px;}
+    /* Fourth section */
+    .faq .question p{font-size: 18px;}
+}
+
+@media only screen and (max-width: 496px){
+    /* First section */
+    .landingScreenText{padding: 0 15px 0 25px; width: 100%;}
+    /* Third section */
+    .slider_container{width: 95%;}
+    .testimonialText{padding: 0 20px;}
+    .testimonialText i{line-height: 25px;}
+    .studentName, .studentUniversityName, .studentInfoOnly{font-size: 15px;}
+    /* Fourth section */
+    .question{line-height: 30px; display: flex; justify-content: space-between;}
+    .question p{line-height: 30px; width: 82%;}
+}
+
+@media only screen and (max-width: 410px){
+    /* Third section */
+    .slider_container{width: 95%;}
+    .testimonialText{padding: 0 10px;}
+    .testimonialText i{font-size: 15px; line-height: 25px;}
+    .studentPicture{height: 80px; width: 80px;}
+    .studentName, .studentUniversityName, .studentInfoOnly{font-size: 14px;}
+    /* Fourth section */
+    .question{line-height: 30px;}
+}
+
+@media only screen and (max-width: 375px){
+    /* First section */
+    .landingScreenText{padding: 0 5px 0 15px; width: 95%;}
+    .landingScreen .landingScreenImg{display: none;}
+    .landingScreenText .firstText{font-size: 36px;}
+    .landingScreenText .secondText{font-size: 14px;}
+}
+
+/* Works till width is 360px */

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfiEducation</title> 
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSS/mainStyle.css">
+    <link rel="stylesheet" href="CSS/contactStyle.css">
+    <script src=”https://code.jquery.com/jquery-3.4.1.js" integrity=”sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=” crossorigin=”anonymous”>
+    </script>
+</head>
+<body>
+    <section>
+        <div>
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="../Images/transparentLogo.png" alt="Firm's logo" height="70px"></a> <!-- clicking the logo would lead the user to the home page -->
+                </div>
+                <div class="collapsed_navbar">
+                    <i class="fa fa-chevron-down icons" style="color: white;"></i>
+                </div>
+                <div class="navbarContents">
+                    <!-- <pre></pre> used to take into account the spaces before and after so that the underline is a bit longer and looks better -->
+                    <div class="navbar_link"><a href="index.html"><pre>  Home  </pre></div></a>
+                    <div class="navbar_link"><a href="countries.html"><pre>  Countries  </pre></div></a>
+                    <div class="navbar_link"><a href="scholarships.html"><pre>  Scholarships  </pre></div></a>
+                    <div class="navbar_link navbarItemActive" style="margin-right: 20%;"><a href="contact.html"><pre>  Contact  </pre></div></a>
+                </div>
+            </div>
+            <div class="contactButton">
+                <i class="fa fa-phone icons"></i>
+                <span><a href="tel: 9712924902" style="color: black;">97129 24902</a></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="main_content">
+        <img src="../Images/studentPointing.png" alt="Student pointing at our contact details" style="z-index: -1;">
+        <!-- Image by <a href="https://pixabay.com/users/publicdomainpictures-14/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=15723">PublicDomainPictures</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=15723">Pixabay</a> -->
+        <div class="spacing"></div>
+        <div class="main_info">
+            <div class="contact_form_container">
+                <form class="contact_form" autocomplete="off" id="myForm" action="https://formsubmit.co/meenu.infieducation@gmail.com" method="POST"> <!-- Does not suggest users their previous entries -->
+                    <h3>Leave us a message: </h3>
+                    <div class="single_row">
+                        <input type="text" name="firstName" placeholder="First name *" required>
+                        <input type="text" name="lastName" placeholder="Last name *" required> 
+                    </div>
+                    <div class="single_row">
+                        <input type="email" name="email" placeholder="Email-id *" required>
+                        <input type="text" name="phone" placeholder="Phone number *" required>
+                    </div>
+                    <div class="single_row">
+                        <input type="text" name="course" placeholder="Course">
+                        <input type="text" name="country" placeholder="Country">
+                    </div>
+                    <textarea id="message" name="message" rows="2" placeholder="Any extra remarks you would like to add" style="resize: none;"></textarea> <!-- the resize property prevents the users from being able to increase the dimensions of the textarea box -->
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="location">
+        <div class="sectionTitle">Meet us!</div>
+        <div class="address"><span>Address: </span>404-A, Zodiac Plaza, H.L. College Road, Navrangpura, Ahmedabad 380 009</div>
+        <div class="location_container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.8210814312565!2d72.55263061477748!3d23.03034068494917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84ee3e0fd37d%3A0xf098a4b733c55827!2sZodiac%20Plaza%2C%20SV%20Desai%20Marg%2C%20Gulbai%20Tekra%2C%20Ahmedabad%2C%20Gujarat%20380009!5e0!3m2!1sen!2sin!4v1653907582382!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="location_frame"></iframe>
+        </div>
+    </section>
+
+    <section class="footer">
+        Copyright © 2022, InfiEducation
+    </section>
+
+    <script src="../JS/mainScript.js"></script>
+    <script src="../JS/contactScript.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</body>
+</html>
