@@ -45,6 +45,14 @@
     align-items: center;
     font-weight: 600;
     color: black;
+    box-shadow: 0 4px 12px rgba(255, 112, 67, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.to_contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 112, 67, 0.4);
 }
 
 .all_scholarships_container{
