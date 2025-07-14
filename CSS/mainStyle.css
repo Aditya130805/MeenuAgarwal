@@ -26,6 +26,17 @@
     filter: invert(1); /* Inverts the color of the logo */
 }
 
+.logo-text {
+    color: white;
+    font-size: 30px;
+    font-weight: 400;
+    margin-left: 35px;
+    letter-spacing: 1px;
+    font-family: 'Lucida Handwriting', cursive;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 .navbarContents{
     width: 50%;
     display: flex;
@@ -168,6 +179,7 @@ i{
 @media only screen and (max-width: 745px){
     .collapsed_navbar{display: flex;}
     .logo img{height: 60px;}
+    .logo-text{font-size: 20px;}
     .navbarContents{display: none;}
     
     .navbar{flex-wrap: wrap; height: auto; justify-content: space-between;}
@@ -179,5 +191,7 @@ i{
 
 @media only screen and (max-width: 600px){
     .contactButton{right: 20px; bottom: 20px;}
+    .logo-text{font-size: 18px; margin-left: 10px;}
+    .logo img{height: 50px; margin: 0 0 0 10%;}
 }
 
