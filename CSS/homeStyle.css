@@ -73,7 +73,7 @@
 }
 
 .why_us{
-    min-height: 400px;
+    min-height: 450px;
     height: auto;
     width: 100%;
     background: linear-gradient(99deg, rgba(35, 105, 138, 0.9), rgb(28, 84, 109));
@@ -95,9 +95,10 @@
 }
 
 .sectionText{
-    font-size: 18px;
-    line-height: 32px;
+    font-size: 20px;
+    line-height: 36px;
     color: white;
+    font-weight: 400;
 }
 
 .testimonials{
