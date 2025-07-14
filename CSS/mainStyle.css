@@ -23,7 +23,7 @@
 
 .logo img{
     margin: 0 0 0 20%; 
-    filter: invert(1); /* Inverts the color of the logo */
+    /*filter: invert(1);*/ /* Inverts the color of the logo */
 }
 
 .navbarContents{

@@ -37,8 +37,8 @@
 }
 
 .landingScreenText .firstText{
-    font-size: 56px;
-    font-weight: 700;
+    font-size: 50px;
+    font-weight: 800;
     letter-spacing: 2px;
     margin: 0px 0 45px 0; /* top right bottom left - clockwise margins */
 }
