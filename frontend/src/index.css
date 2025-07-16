@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dark-blue-color: rgb(28, 84, 109);
+  --light-blue-color: rgba(35, 105, 138, 0.9);
+  --coral-color: rgb(255, 112, 67);
+  --contact-green-color: rgb(60, 220, 80);
+  --black-color: #1e1e1e;
+}
+
+.font-alex-brush {
+  font-family: 'Alex Brush', cursive;
+}
