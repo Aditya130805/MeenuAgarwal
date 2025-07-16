@@ -23,12 +23,6 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Form submission logic - using formsubmit.co as in the original
-    // The form will handle submission through its action attribute
-  };
-
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -54,7 +48,6 @@ const Contact = () => {
               id="contactForm"
               action="https://formsubmit.co/meenuipc@gmail.com"
               method="POST"
-              onSubmit={handleSubmit}
             >
               <h3 className="text-2xl text-[rgb(85,85,85)] font-extrabold mb-5">
                 Leave me a message:
