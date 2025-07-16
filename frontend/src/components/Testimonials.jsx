@@ -11,20 +11,8 @@ const Testimonials = () => {
       name: "Tesuu Agarwal",
       university: "Queen Mary University, London",
       image: testimonial1Image,
-      text: "Ms. Meenu Agarwal has really assisted me with everything I could have needed - from the initial brainstorming on my applications to the fag end of the process. It has been an excellent journey and I am really thankful!"
+      text: "I am incredibly grateful for the guidance and support I received throughout my academic journey- from high school to securing a place at Queen Mary University of London to study law. Your insight and encouragement played a key role in helping me navigate the admissions process with confidence. It not only helped me prepare a strong university application, but also ensured I was choosing a path that aligned with my interests and long-term goals. Even after starting university, the continued support in helping me explore career opportunities both in the UK and the US has been invaluable. From discussing different specialisations in law to walking me through postgraduate options and internship pathways abroad, the advice has helped me think more clearly and ambitiously about my future."
     },
-    {
-      name: "Jayesh Goel",
-      university: "University of Padua, Italy",
-      image: testimonial2Image,
-      text: "I am extremely grateful to you ma'am and all the work you have put into helping me obtain a really significant scholarship for studying abroad. Thank you!"
-    },
-    {
-      name: "Amit Chavan",
-      university: "University of Lincoln, UK",
-      image: testimonial3Image,
-      text: "I've wanted to pursue construction management since a very tender age, and Ms. Meenu Agarwal has made it possible. At the University of Lincoln, I am really happy and I would suggest her to anybody who wants to study abroad."
-    }
   ];
 
   // Auto-rotate testimonials
