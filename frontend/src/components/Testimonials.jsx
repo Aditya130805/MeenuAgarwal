@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import testimonial1Image from '../assets/Images/testimonial1Profile.jpeg';
+import testimonial2Image from '../assets/Images/testimonial2Profile.jpg';
+import testimonial3Image from '../assets/Images/testimonial3Profile.jpeg';
 
 const Testimonials = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -7,19 +10,19 @@ const Testimonials = () => {
     {
       name: "Tesuu Agarwal",
       university: "Queen Mary University, London",
-      image: "/src/assets/Images/testimonial1Profile.jpeg",
+      image: testimonial1Image,
       text: "Ms. Meenu Agarwal has really assisted me with everything I could have needed - from the initial brainstorming on my applications to the fag end of the process. It has been an excellent journey and I am really thankful!"
     },
     {
       name: "Jayesh Goel",
       university: "University of Padua, Italy",
-      image: "/src/assets/Images/testimonial2Profile.jpg",
+      image: testimonial2Image,
       text: "I am extremely grateful to you ma'am and all the work you have put into helping me obtain a really significant scholarship for studying abroad. Thank you!"
     },
     {
       name: "Amit Chavan",
       university: "University of Lincoln, UK",
-      image: "/src/assets/Images/testimonial3Profile.jpeg",
+      image: testimonial3Image,
       text: "I've wanted to pursue construction management since a very tender age, and Ms. Meenu Agarwal has made it possible. At the University of Lincoln, I am really happy and I would suggest her to anybody who wants to study abroad."
     }
   ];

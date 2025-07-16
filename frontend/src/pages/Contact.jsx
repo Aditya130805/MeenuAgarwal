@@ -2,8 +2,7 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactButton from '../components/ContactButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import studentPointingImage from '../assets/Images/studentPointing.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +37,7 @@ const Contact = () => {
       <section className="relative flex flex-col md:flex-row justify-center items-center w-full min-h-[638px] py-10 md:py-0 md:h-[700px]">
         {/* Student image - hidden on small screens, visible from medium screens */}
         <img 
-          src="/src/assets/Images/studentPointing.png" 
+          src={studentPointingImage} 
           alt="Student pointing at our contact details" 
           className="hidden md:block absolute left-0 md:left-5 lg:left-10 bottom-0 h-[300px] md:h-[400px] lg:h-[550px] z-0"
         />

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, Link } from 'react-router-dom';
+import logo from '../assets/Images/transparentLogoBlack.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ const Navbar = () => {
       <div className="w-full lg:w-1/2 flex items-center">
         <Link to="/" className="ml-2 sm:ml-4 md:ml-[7%]">
           <img 
-            src="/src/assets/Images/transparentLogoBlack.png" 
+            src={logo} 
             alt="Firm's logo" 
             className="h-[50px] sm:h-[60px] md:h-[70px] filter invert"
           />

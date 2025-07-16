@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import graduatingStudentImage from '../assets/Images/graduatingStudent.png';
 
 const Hero = () => {
   return (
@@ -38,7 +39,7 @@ const Hero = () => {
           {/* Hero Image */}
           <div className="w-2/5 flex justify-start items-center">
             <img 
-              src="/src/assets/Images/graduatingStudent.png" 
+              src={graduatingStudentImage} 
               alt="A student wearing a graduation cap" 
               className="h-[590px] object-contain"
             />
