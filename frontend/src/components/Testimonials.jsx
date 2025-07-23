@@ -21,13 +21,13 @@ const Testimonials = () => {
   ];
 
   // Auto-rotate testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveSlide((prev) => (prev + 1) % testimonials.length);
+  //   }, 5000);
     
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+  //   return () => clearInterval(interval);
+  // }, [testimonials.length]);
 
   return (
     <section className="relative w-full py-20 bg-radial from-white to-gray-200 flex flex-col justify-center items-center overflow-hidden">
