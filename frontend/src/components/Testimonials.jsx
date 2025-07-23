@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import testimonial1Image from '../assets/Images/testimonial1Profile.jpeg';
-import testimonial2Image from '../assets/Images/testimonial2Profile.jpg';
-import testimonial3Image from '../assets/Images/testimonial3Profile.jpeg';
+import testimonial2Image from '../assets/Images/testimonial2Profile.png';
 
 const Testimonials = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -13,6 +12,12 @@ const Testimonials = () => {
       image: testimonial1Image,
       text: "I am incredibly grateful for the guidance and support I received throughout my academic journey- from high school to securing a place at Queen Mary University of London to study law. Your insight and encouragement played a key role in helping me navigate the admissions process with confidence. It not only helped me prepare a strong university application, but also ensured I was choosing a path that aligned with my interests and long-term goals. Even after starting university, the continued support in helping me explore career opportunities both in the UK and the US has been invaluable. From discussing different specialisations in law to walking me through postgraduate options and internship pathways abroad, the advice has helped me think more clearly and ambitiously about my future."
     },
+    {
+      name: "Pankaj Kale",
+      university: "Heriot Watt University, Edinburgh",
+      image: testimonial2Image,
+      text: "Meenu Agrawal's guidance and support were instrumental in helping me secure admission to a prestigious university like Heriot-Watt.  I was the first person in my entire family to dream of studying abroad in pursuit of a successful career. However, achieving this dream required securing a bank loan—a daunting task for someone with no prior exposure to international education.  Meenu Agrawal not only assisted me throughout the admission process but also patiently addressed all the concerns my parents had—about the university, my well-being, and most importantly, the education loan. Her involvement made a world of difference at every step of the journey."
+    }
   ];
 
   // Auto-rotate testimonials
