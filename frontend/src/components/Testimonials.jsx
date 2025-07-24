@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import testimonial1Image from '../assets/Images/testimonial1Profile.jpeg';
 import testimonial2Image from '../assets/Images/testimonial2Profile.png';
+import testimonial3Image from '../assets/Images/testimonial3Profile.jpg';
 
 const Testimonials = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -17,6 +18,12 @@ const Testimonials = () => {
       university: "Heriot Watt University, Edinburgh",
       image: testimonial2Image,
       text: "Meenu Agrawal's guidance and support were instrumental in helping me secure admission to a prestigious university like Heriot-Watt.  I was the first person in my entire family to dream of studying abroad in pursuit of a successful career. However, achieving this dream required securing a bank loan—a daunting task for someone with no prior exposure to international education.  Meenu Agrawal not only assisted me throughout the admission process but also patiently addressed all the concerns my parents had—about the university, my well-being, and most importantly, the education loan. Her involvement made a world of difference at every step of the journey."
+    },
+    {
+      name: "Shravan Doshi",
+      university: "University of Edinburgh",
+      image: testimonial3Image,
+      text: "Interacting with Meenu made the process extremely seamless and effortless. She was extremely knowledgeable, helpful and very respecting of my choices and guided me in the right manner."
     }
   ];
 
