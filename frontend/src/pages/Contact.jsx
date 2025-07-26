@@ -46,7 +46,7 @@ const Contact = () => {
               className="w-full flex flex-col p-5 md:p-[30px] lg:p-[30px_60px] rounded-[10px]"
               autoComplete="off"
               id="contactForm"
-              action="https://formsubmit.co/meenuipc@gmail.com"
+              action="https://formsubmit.co/meenu@meenuagarwal.in"
               method="POST"
             >
               <h3 className="text-2xl text-[rgb(85,85,85)] font-extrabold mb-5">
