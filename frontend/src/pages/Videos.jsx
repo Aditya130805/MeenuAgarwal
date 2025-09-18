@@ -85,8 +85,8 @@ const Videos = () => {
     },
   ]);
 
-  // YouTube channel URL - replace with actual channel URL
-  const youtubeChannelUrl = "https://www.youtube.com/@MeenuAgarwal";
+  // YouTube channel URL
+  const youtubeChannelUrl = "https://www.youtube.com/@meenuagarwalEducation";
 
   return (
     <div className="min-h-screen bg-white">
