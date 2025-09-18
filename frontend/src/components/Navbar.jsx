@@ -46,6 +46,7 @@ const Navbar = () => {
       <div className="hidden lg:flex w-1/2 justify-end items-center">
         <NavLink href="/" active={currentPath === '/'}>Home</NavLink>
         <NavLink href="/countries" active={currentPath === '/countries'}>Countries</NavLink>
+        <NavLink href="/videos" active={currentPath === '/videos'}>Videos</NavLink>
         {/* <NavLink href="/scholarships" active={currentPath === '/scholarships'}>Scholarships</NavLink> */}
         <NavLink href="/contact" active={currentPath === '/contact'} className="mr-[20%]">Contact</NavLink>
       </div>
@@ -57,6 +58,7 @@ const Navbar = () => {
         <div className="flex flex-col items-center py-6 space-y-5">
           <MobileNavLink href="/" active={currentPath === '/'}>Home</MobileNavLink>
           <MobileNavLink href="/countries" active={currentPath === '/countries'}>Countries</MobileNavLink>
+          <MobileNavLink href="/videos" active={currentPath === '/videos'}>Videos</MobileNavLink>
           {/* <MobileNavLink href="/scholarships" active={currentPath === '/scholarships'}>Scholarships</MobileNavLink> */}
           <MobileNavLink href="/contact" active={currentPath === '/contact'}>Contact</MobileNavLink>
         </div>
