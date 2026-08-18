@@ -32,8 +32,8 @@ const bookingPayload = {
   payload: {
     uid: 'abc123XYZ',
     bookingId: 4242,
-    title: 'Counselling Session between Meenu Agarwal and Riya Sharma',
-    type: 'counselling',
+    title: 'Counseling Session between Meenu Agarwal and Riya Sharma',
+    type: 'counseling',
     // 2026-09-02T10:30:00Z == 4:00 pm IST
     startTime: '2026-09-02T10:30:00Z',
     endTime: '2026-09-02T11:15:00Z',

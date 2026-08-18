@@ -13,7 +13,7 @@ const WhyUs = () => {
         <div className="flex flex-col items-center mb-12">
           {/* <span className="bg-white/10 text-white text-sm font-medium px-4 py-1 rounded-full mb-4">MY PHILOSOPHY</span> */}
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4 text-center px-4 md:px-6 leading-15">
-            Career counselling goes beyond just securing admission.
+            Career counseling goes beyond just securing admission.
           </h2>
           <div className="w-24 h-1 bg-[var(--coral-color)]"></div>
         </div>
@@ -45,7 +45,7 @@ const WhyUs = () => {
         </div>
         
         <p className="text-base md:text-xl leading-7 md:leading-9 text-white font-normal max-w-4xl mx-auto text-center">
-          I firmly believe in true career guidance — not just 'admissions into universities'. I take pride in personally counselling every student, taking the time to deeply understand their aspirations and guiding them towards choices that genuinely align with their goals.
+          I firmly believe in true career guidance — not just 'admissions into universities'. I take pride in personally counseling every student, taking the time to deeply understand their aspirations and guiding them towards choices that genuinely align with their goals.
         </p>
       </div>
     </section>

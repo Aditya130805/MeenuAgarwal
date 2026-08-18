@@ -23,7 +23,7 @@ export const CAL_DIRECT_URL = `https://cal.com/${CAL_LINK}`;
 export const SESSION_DURATION_MINUTES = 30;
 
 // Copy
-export const BOOKING_HEADING = 'Book a Counselling Session';
+export const BOOKING_HEADING = 'Book a Counseling Session';
 export const BOOKING_SUBHEADING =
   'A focused one-on-one conversation about your goals, your options, and the ' +
   'realistic next step — with no obligation and nothing to pay.';

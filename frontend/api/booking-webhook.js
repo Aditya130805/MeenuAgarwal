@@ -160,7 +160,7 @@ export const buildEmail = (triggerEvent, payload) => {
     ['Ends (IST)', formatIst(payload.endTime)],
     ['Student timezone', attendee.timeZone || 'Unknown'],
     ['Where', describeLocation(payload)],
-    ['Event type', payload.title || payload.type || 'Counselling Session'],
+    ['Event type', payload.title || payload.type || 'Counseling Session'],
   ];
 
   // Whatever custom booking questions Meenu has configured, without this file

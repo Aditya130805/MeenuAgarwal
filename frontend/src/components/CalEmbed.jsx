@@ -18,7 +18,7 @@ import {
 
 // Isolates this embed's config and event listeners from any other Cal embed we
 // might add later, so calling cal("ui", ...) here can never affect another one.
-const NAMESPACE = 'counselling';
+const NAMESPACE = 'counseling';
 
 // Card surface, used only for the skeleton and failure states. Cal's own booker
 // already renders a bordered card, so wrapping the live embed in this too would
