@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import BookingCTA from '../components/BookingCTA';
 import ContactButton from '../components/ContactButton';
 import studentPointingImage from '../assets/Images/studentPointing.webp';
 
@@ -160,6 +161,10 @@ const Contact = () => {
         </div>
       </section>
       
+      <BookingCTA
+        heading="Prefer to talk it through?"
+        body="Pick a time that suits you and Meenu will be there — one-on-one, free, and with no obligation."
+      />
       <Footer />
       <ContactButton />
     </div>

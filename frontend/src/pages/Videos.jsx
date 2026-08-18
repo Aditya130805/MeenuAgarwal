@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import BookingCTA from '../components/BookingCTA';
 import ContactButton from '../components/ContactButton';
 
 const Videos = () => {
@@ -297,6 +298,10 @@ const Videos = () => {
         </div>
       </section>
       
+      <BookingCTA
+        heading="Still have questions?"
+        body="The videos cover a lot, but nothing beats talking through your own situation. Book a free session with Meenu."
+      />
       <Footer />
       <ContactButton />
     </div>

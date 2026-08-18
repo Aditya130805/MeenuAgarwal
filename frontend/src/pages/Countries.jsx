@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import BookingCTA from '../components/BookingCTA';
 import ContactButton from '../components/ContactButton';
 import UKFlag from '../assets/Images/UKFlag.webp';
 import ItalyFlag from '../assets/Images/italyFlag.webp';
@@ -210,6 +211,10 @@ const Countries = () => {
         </div>
       </section>
       
+      <BookingCTA
+        heading="Not sure which country fits you?"
+        body="That is exactly what a session is for. Talk it through with Meenu one-on-one — free, and with no obligation."
+      />
       <Footer />
       <ContactButton />
     </div>
