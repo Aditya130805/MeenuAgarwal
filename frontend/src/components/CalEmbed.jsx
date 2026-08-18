@@ -186,9 +186,11 @@ const CalEmbed = () => {
         )}
 
         {/* Keyed on the link so a config change forces a clean remount rather
-            than trying to mutate a live iframe. */}
+            than trying to mutate a live iframe. The top padding keeps the
+            booker's avatar and its hover tooltip off the card's top edge,
+            which they otherwise sit flush against. */}
         <Cal
-          className="overflow-hidden rounded-[16px] shadow-[0_8px_24px_rgba(35,105,138,0.15)]"
+          className="overflow-hidden rounded-[16px] pt-6 md:pt-8 shadow-[0_8px_24px_rgba(35,105,138,0.15)]"
           key={CAL_LINK}
           namespace={NAMESPACE}
           calLink={CAL_LINK}
