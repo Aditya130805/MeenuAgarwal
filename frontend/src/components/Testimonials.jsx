@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import testimonial1Image from '../assets/Images/testimonial1Profile.jpeg';
-import testimonial2Image from '../assets/Images/testimonial2Profile.png';
-import testimonial3Image from '../assets/Images/testimonial3Profile.jpg';
-import testimonial4Image from '../assets/Images/testimonial4Profile.png';
+import testimonial1Image from '../assets/Images/testimonial1Profile.webp';
+import testimonial2Image from '../assets/Images/testimonial2Profile.webp';
+import testimonial3Image from '../assets/Images/testimonial3Profile.webp';
+import testimonial4Image from '../assets/Images/testimonial4Profile.webp';
+import testimonial5Image from '../assets/Images/testimonial5Profile.webp';
 
 const Testimonials = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -31,6 +32,12 @@ const Testimonials = () => {
       university: "University of Reading, UK",
       image: testimonial4Image,
       text: "I've known Meenu madam since 2009, and I can confidently say she has been one of the most important guiding lights in my academic journey. Her kindness, empathy, and deep knowledge of the UK education system made a world of difference as I navigated the complex process of applying to multiple universities. What truly sets Meenu madam apart is her calm and methodical approach — especially during moments of uncertainty and anxiety that often accompany big decisions about one's future. She was always patient, reassuring, and thorough, helping me weigh my options with clarity and confidence. I consider myself truly fortunate to have had her support and guidance. If you're seeking someone who not only understands the system inside out but also genuinely cares about your aspirations, Meenu madam is exactly the person you want by your side. A big thank you, madam!"
+    },
+    {
+      name: "Vidisha Bajoria",
+      university: "Nanyang Technological University, Singapore",
+      image: testimonial5Image,
+      text: "She is the best mentor I could have asked for — always available, honest in her feedback, supportive, and extremely understanding. My journey to NTU would not have been possible without her guidance, and I am forever grateful. Her support has continued even after I entered NTU. Over the past one and a half years of continuous guidance and support, she has become my lifelong mentor."
     }
   ];
 
@@ -71,10 +78,17 @@ const Testimonials = () => {
                 <div className="w-full md:w-[30%] bg-black/2 flex flex-col justify-center items-center py-8 md:py-12">
                   <div className="relative mb-6">
                     <div className="absolute inset-0 bg-gradient-to-r from-[var(--light-blue-color)] to-[var(--coral-color)] rounded-full blur-md opacity-70"></div>
-                    <div 
-                      className="relative h-[135px] w-[135px] rounded-full border-4 border-black/30 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${testimonial.image})` }}
-                    ></div>
+                    <div className="relative h-[135px] w-[135px] rounded-full border-4 border-black/30 overflow-hidden">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                        width="320"
+                        height="320"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
                   </div>
                   <h3 className="text-xl font-bold text-black text-center mb-2">
                     {testimonial.name}
