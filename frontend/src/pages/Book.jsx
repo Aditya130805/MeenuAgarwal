@@ -7,7 +7,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ContactButton from '../components/ContactButton';
 import CalEmbed from '../components/CalEmbed';
 import {
   BOOKING_HEADING,
@@ -60,9 +59,7 @@ const Book = () => {
 
       {/* The calendar itself */}
       <section className="max-w-6xl mx-auto px-4 md:px-8 py-12 md:py-16">
-        <div className="w-full bg-white rounded-[25px] shadow-[0_8px_24px_rgba(35,105,138,0.2)] overflow-hidden">
-          <CalEmbed />
-        </div>
+        <CalEmbed />
 
         <p className="text-center text-gray-600 mt-8 text-base">
           Prefer to write first?{' '}
@@ -77,7 +74,6 @@ const Book = () => {
       </section>
 
       <Footer />
-      <ContactButton />
     </div>
   );
 };

@@ -10,6 +10,7 @@ import {
   BRAND_COLOR,
   CAL_DIRECT_URL,
   CAL_LINK,
+  EMBED_FAILURE_MS,
   EMBED_TIMEOUT_MS,
   FALLBACK_PHONE_DISPLAY,
   FALLBACK_PHONE_HREF,
@@ -18,6 +19,12 @@ import {
 // Isolates this embed's config and event listeners from any other Cal embed we
 // might add later, so calling cal("ui", ...) here can never affect another one.
 const NAMESPACE = 'counselling';
+
+// Card surface, used only for the skeleton and failure states. Cal's own booker
+// already renders a bordered card, so wrapping the live embed in this too would
+// nest two cards inside each other.
+const SURFACE =
+  'w-full bg-white rounded-[25px] shadow-[0_8px_24px_rgba(35,105,138,0.18)]';
 
 /**
  * A direct link out to the Cal.com booking page, used whenever the inline embed
@@ -83,6 +90,12 @@ const CalEmbed = () => {
       if (isMounted) setIsSlow(true);
     }, EMBED_TIMEOUT_MS);
 
+    // Escalate a hung embed to an outright failure. setStatus is called with an
+    // updater so this can never clobber a 'ready' that landed in the meantime.
+    const failureTimer = setTimeout(() => {
+      if (isMounted) setStatus((current) => (current === 'ready' ? current : 'failed'));
+    }, EMBED_FAILURE_MS);
+
     (async () => {
       try {
         calApi = await getCalApi({ namespace: NAMESPACE });
@@ -91,6 +104,10 @@ const CalEmbed = () => {
         calApi('ui', {
           hideEventTypeDetails: false,
           layout: 'month_view',
+          // The site has no dark mode. Cal's default of "auto" follows the
+          // visitor's OS preference, which renders a black booker inside our
+          // white page for anyone browsing in dark mode.
+          theme: 'light',
           // The embed needs literal hex values; it cannot read our CSS custom
           // properties from across the iframe boundary.
           cssVarsPerTheme: {
@@ -114,6 +131,7 @@ const CalEmbed = () => {
     return () => {
       isMounted = false;
       clearTimeout(slowTimer);
+      clearTimeout(failureTimer);
       if (calApi) {
         calApi('off', { action: 'linkReady', callback: handleReady });
         calApi('off', { action: 'linkFailed', callback: handleFailed });
@@ -123,7 +141,7 @@ const CalEmbed = () => {
 
   if (status === 'failed') {
     return (
-      <div className="w-full min-h-[400px] flex flex-col justify-center items-center text-center px-6 py-14">
+      <div className={`${SURFACE} min-h-[400px] flex flex-col justify-center items-center text-center px-6 py-14`}>
         <FontAwesomeIcon
           icon={faTriangleExclamation}
           className="text-[var(--coral-color)] text-4xl mb-5"
@@ -143,7 +161,7 @@ const CalEmbed = () => {
   return (
     <div className="w-full">
       {isSlow && status !== 'ready' && (
-        <div className="w-full px-6 py-5 mb-2 text-center border-b border-black/10">
+        <div className="w-full px-6 py-6 mb-5 rounded-[20px] bg-[rgba(255,112,67,0.07)] text-center">
           <p className="text-base text-[rgb(120,120,120)] mb-4">
             The calendar is taking longer than usual to load.
           </p>
@@ -151,10 +169,14 @@ const CalEmbed = () => {
         </div>
       )}
 
-      <div className="relative w-full min-h-[640px] md:min-h-[720px]">
+      <div
+        className={`relative w-full ${
+          status === 'ready' ? '' : 'min-h-[560px] md:min-h-[620px]'
+        }`}
+      >
         {status !== 'ready' && (
           <div
-            className="absolute inset-0 z-10 flex flex-col gap-4 p-6 md:p-10 bg-white"
+            className={`${SURFACE} absolute inset-0 z-10 flex flex-col gap-4 p-6 md:p-10`}
             aria-hidden="true"
           >
             <div className="h-8 w-2/5 rounded-lg bg-black/10 animate-pulse motion-reduce:animate-none" />
@@ -166,11 +188,12 @@ const CalEmbed = () => {
         {/* Keyed on the link so a config change forces a clean remount rather
             than trying to mutate a live iframe. */}
         <Cal
+          className="overflow-hidden rounded-[16px] shadow-[0_8px_24px_rgba(35,105,138,0.15)]"
           key={CAL_LINK}
           namespace={NAMESPACE}
           calLink={CAL_LINK}
-          style={{ width: '100%', height: '100%', overflow: 'scroll' }}
-          config={{ layout: 'month_view' }}
+          style={{ width: '100%' }}
+          config={{ layout: 'month_view', theme: 'light' }}
         />
       </div>
     </div>

@@ -51,6 +51,12 @@ export const BRAND_COLOR = '#FF7043';
 export const FALLBACK_PHONE_DISPLAY = '97129 24902';
 export const FALLBACK_PHONE_HREF = 'tel:9712924902';
 
-// How long to wait for the Cal.com embed to signal readiness before assuming
-// it is blocked and showing the direct-link fallback instead.
+// How long to wait for the Cal.com embed to signal readiness before offering
+// the direct link alongside it.
 export const EMBED_TIMEOUT_MS = 6000;
+
+// Hard deadline. When an ad-blocker blocks cal.com outright, getCalApi() neither
+// resolves nor rejects and no linkFailed event ever arrives, so nothing else
+// would move us off the skeleton. Past this point we treat it as a failure and
+// show the fallback card rather than leaving a skeleton up forever.
+export const EMBED_FAILURE_MS = 15000;
