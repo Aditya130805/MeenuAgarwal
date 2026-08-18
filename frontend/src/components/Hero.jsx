@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import graduatingStudentImage from '../assets/Images/graduatingStudent.webp';
@@ -31,12 +32,20 @@ const Hero = () => {
               I am <span className="font-bold text-[var(--coral-color)]">Meenu Agarwal</span> — a Chartered Accountant by qualification and an educationist by passion. I empower students to unlock their true potential and build careers that equip them not just for today's opportunities, but for tomorrow's challenges.
             </p>
             
-            <a href="/contact" className="group inline-flex">
-              <button className="bg-[var(--coral-color)] h-[50px] px-8 mb-16 rounded-full font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
-                CONTACT ME
-                <FontAwesomeIcon icon={faArrowRight} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-            </a>
+            <div className="flex items-center gap-6 mb-16">
+              <Link to="/book" className="group inline-flex">
+                <button className="bg-[var(--coral-color)] h-[50px] px-8 rounded-full font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
+                  BOOK A SESSION
+                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+              </Link>
+              <Link
+                to="/contact"
+                className="font-semibold text-[var(--dark-blue-color)] underline underline-offset-4 hover:opacity-70 transition-opacity duration-300"
+              >
+                Contact me instead
+              </Link>
+            </div>
           </div>
 
           {/* Hero Image */}
@@ -60,13 +69,19 @@ const Hero = () => {
               I am <span className="font-bold text-[var(--coral-color)]">Meenu Agarwal</span> — a Chartered Accountant by qualification and an educationist by passion. I empower students to unlock their true potential and build careers that equip them not just for today's opportunities, but for tomorrow's challenges.
             </p>
             
-            <div className="flex justify-center">
-              <a href="/contact" className="group inline-flex">
+            <div className="flex flex-col items-center gap-5">
+              <Link to="/book" className="group inline-flex">
                 <button className="bg-[var(--coral-color)] h-[50px] px-8 rounded-full font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
-                  CONTACT ME
+                  BOOK A SESSION
                   <FontAwesomeIcon icon={faArrowRight} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
-              </a>
+              </Link>
+              <Link
+                to="/contact"
+                className="font-semibold text-[var(--dark-blue-color)] underline underline-offset-4 hover:opacity-70 transition-opacity duration-300"
+              >
+                Contact me instead
+              </Link>
             </div>
           </div>
         </div>

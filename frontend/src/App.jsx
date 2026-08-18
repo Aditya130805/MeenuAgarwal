@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Countries from './pages/Countries'
 import Videos from './pages/Videos'
+import Book from './pages/Book'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/countries" element={<Countries />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/book" element={<Book />} />
         <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
       </Routes>

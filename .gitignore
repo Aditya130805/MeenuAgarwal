@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local environment files (secrets for api/booking-webhook.js).
+# .env.example is committed as a template and is intentionally not ignored.
+.env
+.env.*
+!.env.example

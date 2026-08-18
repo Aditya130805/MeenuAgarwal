@@ -50,7 +50,8 @@ const Navbar = () => {
         <NavLink href="/countries" active={currentPath === '/countries'}>Countries</NavLink>
         <NavLink href="/videos" active={currentPath === '/videos'}>Videos</NavLink>
         {/* <NavLink href="/scholarships" active={currentPath === '/scholarships'}>Scholarships</NavLink> */}
-        <NavLink href="/contact" active={currentPath === '/contact'} className="mr-[20%]">Contact</NavLink>
+        <NavLink href="/contact" active={currentPath === '/contact'}>Contact</NavLink>
+        <BookButton className="ml-4 mr-[20%]" />
       </div>
 
       {/* Mobile Navigation Dropdown */}
@@ -63,9 +64,23 @@ const Navbar = () => {
           <MobileNavLink href="/videos" active={currentPath === '/videos'}>Videos</MobileNavLink>
           {/* <MobileNavLink href="/scholarships" active={currentPath === '/scholarships'}>Scholarships</MobileNavLink> */}
           <MobileNavLink href="/contact" active={currentPath === '/contact'}>Contact</MobileNavLink>
+          <BookButton className="mt-1" />
         </div>
       </div>
     </nav>
+  );
+};
+
+// Primary call-to-action. Rendered as a coral pill rather than a plain NavLink so
+// booking reads as the main action, not just another destination in the menu.
+const BookButton = ({ className = '' }) => {
+  return (
+    <Link
+      to="/book"
+      className={`inline-flex items-center justify-center h-[38px] px-5 rounded-full bg-[var(--coral-color)] text-white text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ${className}`}
+    >
+      Book a Session
+    </Link>
   );
 };
 
