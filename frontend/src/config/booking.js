@@ -10,8 +10,8 @@
 // Cal.com identity. CAL_LINK is what the embed loads; CAL_DIRECT_URL is the
 // escape hatch we show if the embed itself fails to load (ad-blockers, CSP,
 // flaky networks) so a student is never left staring at a blank box.
-export const CAL_USERNAME = 'meenuagarwal';
-export const CAL_EVENT_SLUG = 'counselling';
+export const CAL_USERNAME = 'meenu-agarwal';
+export const CAL_EVENT_SLUG = 'counseling';
 export const CAL_LINK = `${CAL_USERNAME}/${CAL_EVENT_SLUG}`;
 export const CAL_DIRECT_URL = `https://cal.com/${CAL_LINK}`;
 
