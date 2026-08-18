@@ -1,9 +1,9 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactButton from '../components/ContactButton';
-import UKFlag from '../assets/Images/UKFlag.jpg';
-import ItalyFlag from '../assets/Images/italyFlag.png';
-import NetherlandsFlag from '../assets/Images/netherlandsFlag.png';
+import UKFlag from '../assets/Images/UKFlag.webp';
+import ItalyFlag from '../assets/Images/italyFlag.webp';
+import NetherlandsFlag from '../assets/Images/netherlandsFlag.webp';
 
 const Countries = () => {
   return (
@@ -68,6 +68,10 @@ const Countries = () => {
                     src={UKFlag} 
                     alt="Flag of the United Kingdom" 
                     className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md mb-4"
+                    width="384"
+                    height="256"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <h3 className="text-2xl font-bold text-white text-center">United Kingdom</h3>
                 </div>
@@ -113,6 +117,10 @@ const Countries = () => {
                     src={ItalyFlag} 
                     alt="Flag of Italy" 
                     className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md mb-4"
+                    width="384"
+                    height="256"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <h3 className="text-2xl font-bold text-white text-center">Italy</h3>
                 </div>
@@ -158,6 +166,10 @@ const Countries = () => {
                     src={NetherlandsFlag} 
                     alt="Flag of Netherlands" 
                     className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md mb-4"
+                    width="384"
+                    height="256"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <h3 className="text-2xl font-bold text-white text-center">Netherlands</h3>
                 </div>

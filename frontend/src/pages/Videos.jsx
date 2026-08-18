@@ -18,7 +18,7 @@ const Videos = () => {
     {
       id: 'short1',
       title: 'Biotechnology in Scotland',
-      thumbnail: 'https://img.youtube.com/vi/BE9wX33MisU/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/BE9wX33MisU/sddefault.jpg',
       videoId: 'BE9wX33MisU',
       url: 'https://www.youtube.com/shorts/BE9wX33MisU',
       duration: '0:53'
@@ -26,7 +26,7 @@ const Videos = () => {
     {
       id: 'short2',
       title: 'Maximize UK Master\'s',
-      thumbnail: 'https://img.youtube.com/vi/Zm6POWAPrMo/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/Zm6POWAPrMo/sddefault.jpg',
       videoId: 'Zm6POWAPrMo',
       url: 'https://www.youtube.com/shorts/Zm6POWAPrMo',
       duration: '0:33'
@@ -34,7 +34,7 @@ const Videos = () => {
     {
       id: 'short3',
       title: 'SoP Golden Rules',
-      thumbnail: 'https://img.youtube.com/vi/LxHsp8yPIm0/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/LxHsp8yPIm0/sddefault.jpg',
       videoId: 'LxHsp8yPIm0',
       url: 'https://www.youtube.com/shorts/LxHsp8yPIm0',
       duration: '1:04'
@@ -42,7 +42,7 @@ const Videos = () => {
     {
       id: 'short4',
       title: 'SoP Mistakes to Avoid',
-      thumbnail: 'https://img.youtube.com/vi/zHKEr7xxAX8/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/zHKEr7xxAX8/sddefault.jpg',
       videoId: 'zHKEr7xxAX8',
       url: 'https://www.youtube.com/shorts/zHKEr7xxAX8',
       duration: '0:44'
@@ -50,7 +50,7 @@ const Videos = () => {
     {
       id: 'short5',
       title: 'UK vs US Degrees',
-      thumbnail: 'https://img.youtube.com/vi/V_9rPCkSrVA/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/V_9rPCkSrVA/sddefault.jpg',
       videoId: 'V_9rPCkSrVA',
       url: 'https://www.youtube.com/shorts/V_9rPCkSrVA',
       duration: '0:48'
@@ -58,7 +58,7 @@ const Videos = () => {
     {
       id: 'short6',
       title: 'Beware of These Programs',
-      thumbnail: 'https://img.youtube.com/vi/4gKcenRSB_w/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/4gKcenRSB_w/sddefault.jpg',
       videoId: '4gKcenRSB_w',
       url: 'https://www.youtube.com/shorts/4gKcenRSB_w',
       duration: '1:07'
@@ -66,7 +66,7 @@ const Videos = () => {
     {
       id: 'short7',
       title: 'UCAS',
-      thumbnail: 'https://img.youtube.com/vi/40HDXq5ywbw/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/40HDXq5ywbw/sddefault.jpg',
       videoId: '40HDXq5ywbw',
       url: 'https://www.youtube.com/shorts/40HDXq5ywbw',
       duration: '0:53'
@@ -78,7 +78,7 @@ const Videos = () => {
     {
       id: 'long1',
       title: 'UK: Premier Biomedical Science Hub',
-      thumbnail: 'https://img.youtube.com/vi/l86lEJKms78/maxresdefault.jpg',
+      thumbnail: 'https://img.youtube.com/vi/l86lEJKms78/sddefault.jpg',
       videoId: 'l86lEJKms78',
       url: 'https://www.youtube.com/watch?v=l86lEJKms78',
       duration: '2:36'
@@ -172,9 +172,11 @@ const Videos = () => {
                             src={short.thumbnail}
                             alt={short.title}
                             className="absolute inset-0 w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                             onError={(e) => {
                               e.target.onerror = null;
-                              e.target.src = 'https://via.placeholder.com/1080x1920/eee?text=Video+Thumbnail';
+                              e.target.src = `https://img.youtube.com/vi/${short.videoId}/hqdefault.jpg`;
                             }}
                           />
                         </a>
@@ -252,9 +254,11 @@ const Videos = () => {
                           src={video.thumbnail}
                           alt={video.title}
                           className="absolute inset-0 w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = 'https://via.placeholder.com/1920x1080/eee?text=Video+Thumbnail';
+                            e.target.src = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
                           }}
                         />
                       </a>

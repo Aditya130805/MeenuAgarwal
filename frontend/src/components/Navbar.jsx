@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, Link } from 'react-router-dom';
-import logo from '../assets/Images/transparentLogoBlack.png';
+import logo from '../assets/Images/transparentLogoBlack.webp';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,6 +27,8 @@ const Navbar = () => {
             src={logo} 
             alt="Firm's logo" 
             className="h-[50px] sm:h-[60px] md:h-[70px] filter invert"
+            decoding="async"
+            fetchPriority="high"
           />
         </Link>
         <span className="text-white text-[24px] sm:text-[28px] md:text-[32px] ml-2 font-alex-brush italic tracking-wider truncate">

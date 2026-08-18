@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import graduatingStudentImage from '../assets/Images/graduatingStudent.png';
+import graduatingStudentImage from '../assets/Images/graduatingStudent.webp';
 
 const Hero = () => {
   return (
@@ -45,6 +45,8 @@ const Hero = () => {
               src={graduatingStudentImage} 
               alt="A student wearing a graduation cap" 
               className="h-[675px] object-contain"
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
         </div>

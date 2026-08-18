@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactButton from '../components/ContactButton';
-import studentPointingImage from '../assets/Images/studentPointing.png';
+import studentPointingImage from '../assets/Images/studentPointing.webp';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +34,8 @@ const Contact = () => {
           src={studentPointingImage} 
           alt="Student pointing at our contact details" 
           className="hidden md:block absolute left-0 md:left-5 lg:left-10 bottom-0 h-[300px] md:h-[400px] lg:h-[550px] z-0"
+          decoding="async"
+          fetchPriority="high"
         />
         
         {/* Spacing div - adjusts based on screen size */}
