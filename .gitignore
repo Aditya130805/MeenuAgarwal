@@ -23,8 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Local environment files (secrets for api/booking-webhook.js).
-# .env.example is committed as a template and is intentionally not ignored.
+# Local environment files
 .env
 .env.*
-!.env.example

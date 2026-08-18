@@ -6,23 +6,8 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   globalIgnores(['dist']),
-  // Serverless functions run on Node, not in the browser, so they need Node
-  // globals (process, Buffer) rather than the browser set used by src/.
-  {
-    files: ['api/**/*.js'],
-    extends: [js.configs.recommended],
-    languageOptions: {
-      globals: globals.node,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-    },
-  },
   {
     files: ['**/*.{js,jsx}'],
-    // api/ is Node, not browser, and is handled by the block above.
-    ignores: ['api/**'],
     extends: [
       js.configs.recommended,
       reactHooks.configs['recommended-latest'],
