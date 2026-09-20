@@ -2,87 +2,64 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import graduatingStudentImage from '../assets/Images/graduatingStudent.webp';
+import PageHero from './PageHero';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden h-auto w-full">
-      
-      {/* Decorative elements */}
-      <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[var(--light-blue-color)] opacity-10 blur-xl"></div>
-      <div className="absolute bottom-20 left-20 w-40 h-40 rounded-full bg-[var(--coral-color)] opacity-10 blur-lg"></div>
-      
-      {/* Content container */}
-      <div className="relative z-10 flex flex-col h-full max-w-7xl mx-auto">
-        {/* Section heading */}
-        <div className="w-full px-6 lg:px-[75px] pt-[50px] flex flex-col items-center">
-          <h1 className="text-4xl leading-12 md:text-5xl md:leading-16 lg:text-6xl font-extrabold leading-18 text-center mb-4">
-            Education is life's single most important decision
-          </h1>
-          <div className="w-24 h-1 bg-[var(--coral-color)]"></div>
-        </div>
-        
-        {/* Large screen layout with image - Only visible on xl screens */}
-        <div className="hidden xl:flex flex-1 items-center w-full mt-10">
-          {/* Text and CTA */}
-          <div className="w-5/7 flex flex-col items-start justify-center pl-[75px] pr-5">
-            <p className="text-xl font-medium tracking-wide mb-[45px] leading-11 lg:leading-12 max-w-2xl text-left">
-              {/* For over 15 years, I've dedicated myself to helping students discover learning paths that not only build meaningful careers but also instill lasting confidence, adaptability, and a love for growth. Many of them have gone on to become successful leaders, entrepreneurs, and changemakers in their own right. Their journeys are a testament to the fact that with the right education — and the right guidance — you're not just prepared for a job, you're prepared for life. I'm here to help you do the same, in a world that's changing fast. */}
-              For over 15 years, I have dedicated myself to guiding students towards learning pathways that cultivate not only employability, but also adaptability and lifelong resilience. Many of my students have become top executives, successful entrepreneurs, and inspiring change-makers. Their journeys prove that the right education — paired with the right guidance — prepares you for life, not just a job. 
-              <br></br>
-              I am <span className="font-bold text-[var(--coral-color)]">Meenu Agarwal</span> — a Chartered Accountant by qualification and an educationist by passion. I empower students to unlock their true potential and build careers that equip them not just for today's opportunities, but for tomorrow's challenges.
+    <section className="bg-[#f7fafb] pb-16 md:pb-24">
+      <PageHero
+        title="Education is life’s single most important decision"
+        description="The right course is more than an admission. It should open a path that fits who you are, where you want to go, and the life you want to build."
+      />
+
+      <div className="relative z-10 mx-auto -mt-20 max-w-6xl px-4 md:-mt-24 md:px-8">
+        <div className="grid overflow-hidden rounded-[28px] bg-white shadow-[0_18px_55px_rgba(28,84,109,0.2)] md:grid-cols-[1.15fr_0.85fr]">
+          <div className="p-7 sm:p-10 lg:p-12">
+            <h2 className="max-w-xl text-2xl font-extrabold leading-tight text-[var(--dark-blue-color)] sm:text-3xl lg:text-4xl">
+              Guidance for the career—and the person—you are becoming.
+            </h2>
+            <p className="mt-6 max-w-2xl leading-8 text-slate-700">
+              For over 15 years, I have helped students choose learning paths
+              that build employability, adaptability, and confidence. Their
+              journeys show that the right education, paired with honest
+              guidance, prepares you for life—not only for a job.
             </p>
-            
-            <div className="flex items-center gap-6 mb-16">
-              <Link to="/book" className="group inline-flex">
-                <button className="bg-[var(--coral-color)] h-[50px] px-8 rounded-full font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
-                  BOOK A SESSION
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
+            <p className="mt-5 max-w-2xl leading-8 text-slate-700">
+              I am <strong className="text-[var(--dark-blue-color)]">Meenu Agarwal</strong>,
+              a Chartered Accountant by qualification and an educationist by
+              passion. I work directly with every student to turn ambition into
+              a clear, realistic plan.
+            </p>
+
+            <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+              <Link
+                to="/book"
+                className="group inline-flex min-h-[52px] items-center justify-center rounded-full bg-[var(--coral-color)] px-8 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                BOOK A SESSION
+                <FontAwesomeIcon
+                  icon={faArrowRight}
+                  className="ml-2 transition-transform group-hover:translate-x-1"
+                />
               </Link>
               <Link
                 to="/contact"
-                className="font-semibold text-[var(--dark-blue-color)] underline underline-offset-4 hover:opacity-70 transition-opacity duration-300"
+                className="font-semibold text-[var(--dark-blue-color)] underline underline-offset-4 transition-opacity hover:opacity-70"
               >
                 Contact me instead
               </Link>
             </div>
           </div>
 
-          {/* Hero Image */}
-          <div className="w-2/5 flex justify-start items-center">
-            <img 
-              src={graduatingStudentImage} 
-              alt="A student wearing a graduation cap" 
-              className="h-[675px] object-contain"
+          <div className="relative hidden min-h-[500px] overflow-hidden bg-[#edf5f7] md:block">
+            <div className="absolute -right-24 -top-20 h-72 w-72 rounded-full border border-[rgba(35,105,138,0.12)]" />
+            <img
+              src={graduatingStudentImage}
+              alt="A student wearing a graduation cap"
+              className="absolute bottom-0 left-1/2 h-[500px] max-w-none -translate-x-1/2 object-contain"
               decoding="async"
               fetchPriority="high"
             />
-          </div>
-        </div>
-
-        {/* Small/Medium screen layout - centered, no image - Only visible below xl screens */}
-        <div className="xl:hidden flex flex-col items-center flex-1 px-6 md:px-10 lg:px-20">
-          <div className="max-w-2xl mx-auto flex flex-col justify-center items-center h-full py-12 md:py-16">
-            <p className="text-lg leading-10 md:text-xl font-medium tracking-wide mb-12 md:leading-12 text-center">
-              For over 15 years, I have dedicated myself to guiding students towards learning pathways that cultivate not only employability, but also adaptability and lifelong resilience. Many of my students have become top executives, successful entrepreneurs, and inspiring change-makers. Their journeys prove that the right education — paired with the right guidance — prepares you for life, not just a job. 
-              <br></br>
-              I am <span className="font-bold text-[var(--coral-color)]">Meenu Agarwal</span> — a Chartered Accountant by qualification and an educationist by passion. I empower students to unlock their true potential and build careers that equip them not just for today's opportunities, but for tomorrow's challenges.
-            </p>
-            
-            <div className="flex flex-col items-center gap-5">
-              <Link to="/book" className="group inline-flex">
-                <button className="bg-[var(--coral-color)] h-[50px] px-8 rounded-full font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
-                  BOOK A SESSION
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
-              </Link>
-              <Link
-                to="/contact"
-                className="font-semibold text-[var(--dark-blue-color)] underline underline-offset-4 hover:opacity-70 transition-opacity duration-300"
-              >
-                Contact me instead
-              </Link>
-            </div>
           </div>
         </div>
       </div>
