@@ -39,7 +39,7 @@ describe('Razorpay security helpers', () => {
   });
 
   it('verifies the exact raw webhook body', () => {
-    const rawBody = Buffer.from('{"event":"order.paid","amount":3000000}');
+    const rawBody = Buffer.from('{"event":"order.paid","amount":100}');
     const signature = createHmac(
       'sha256',
       process.env.RAZORPAY_WEBHOOK_SECRET,
@@ -77,7 +77,7 @@ describe('Razorpay security helpers', () => {
 
     const request = fetchMock.mock.calls[0][1];
     expect(JSON.parse(request.body)).toMatchObject({
-      amount: 3_000_000,
+      amount: 100,
       currency: 'INR',
       receipt: 'MA-TEST',
     });

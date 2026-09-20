@@ -17,6 +17,8 @@ import {
   PACKAGE_NAME,
   PACKAGE_PRICE_DISPLAY,
   PACKAGE_PRICE_RUPEES,
+  PAYMENT_SUCCESS_MESSAGE,
+  PAYMENT_TEST_MODE,
   PAYMENT_POLL_ATTEMPTS,
   PAYMENT_POLL_INTERVAL_MS,
 } from '../config/payments';
@@ -50,6 +52,7 @@ const loadRazorpay = () =>
 const Pricing = () => {
   const [customer, setCustomer] = useState(initialCustomer);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [testToken, setTestToken] = useState('');
   const [paymentState, setPaymentState] = useState('idle');
   const [message, setMessage] = useState('');
   const [reference, setReference] = useState('');
@@ -82,9 +85,7 @@ const Pricing = () => {
 
       if (data.status === 'paid') {
         setPaymentState('success');
-        setMessage(
-          'Your payment is confirmed. Meenu will contact you shortly to begin onboarding.',
-        );
+        setMessage(PAYMENT_SUCCESS_MESSAGE);
         return;
       }
 
@@ -97,7 +98,9 @@ const Pricing = () => {
 
     setPaymentState('pending');
     setMessage(
-      'Razorpay is still confirming the payment. Keep your reference number and do not pay again. We will verify it before onboarding.',
+      PAYMENT_TEST_MODE
+        ? 'Razorpay is still confirming the ₹1 verification payment. Keep the reference number and do not pay again while we reconcile it.'
+        : 'Razorpay is still confirming the payment. Keep your reference number and do not pay again. We will verify it before onboarding.',
     );
   };
 
@@ -116,7 +119,7 @@ const Pricing = () => {
       const orderResponse = await fetch('/api/payments/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...customer, acceptedTerms }),
+        body: JSON.stringify({ ...customer, acceptedTerms, testToken }),
       });
       const order = await orderResponse.json();
 
@@ -168,9 +171,7 @@ const Pricing = () => {
 
             if (verification.status === 'paid') {
               setPaymentState('success');
-              setMessage(
-                'Your payment is confirmed. Meenu will contact you shortly to begin onboarding.',
-              );
+              setMessage(PAYMENT_SUCCESS_MESSAGE);
               return;
             }
 
@@ -223,12 +224,15 @@ const Pricing = () => {
               Personal guidance, from first plan to departure
             </p>
             <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
-              One complete counseling package
+              {PAYMENT_TEST_MODE
+                ? 'Verify the payment gateway end to end'
+                : 'One complete counseling package'}
             </h1>
             <div className="mx-auto my-6 h-1 w-24 bg-[var(--coral-color)]" />
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
-              Clear, one-on-one support for students and families navigating the
-              study-abroad journey—without confusing tiers or hidden add-ons.
+              {PAYMENT_TEST_MODE
+                ? 'A restricted ₹1 live payment to confirm capture, signed webhooks, settlement, and the destination bank account before launch.'
+                : 'Clear, one-on-one support for students and families navigating the study-abroad journey—without confusing tiers or hidden add-ons.'}
             </p>
           </div>
         </section>
@@ -246,10 +250,25 @@ const Pricing = () => {
                   </h2>
                 </div>
                 <div className="sm:text-right">
-                  <p className="font-semibold text-slate-700">One-time payment</p>
-                  <p className="text-sm text-slate-500">Including all taxes</p>
+                  <p className="font-semibold text-slate-700">
+                    {PAYMENT_TEST_MODE ? 'Owner verification only' : 'One-time payment'}
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    {PAYMENT_TEST_MODE ? 'Not a package purchase' : 'Including all taxes'}
+                  </p>
                 </div>
               </div>
+
+              {PAYMENT_TEST_MODE && (
+                <div className="mb-8 rounded-2xl border border-[rgba(35,105,138,0.18)] bg-[#edf5f7] p-5 text-sm leading-relaxed text-slate-700">
+                  <strong className="text-[var(--dark-blue-color)]">
+                    Live gateway verification mode.
+                  </strong>{' '}
+                  This ₹1 payment does not purchase or activate the counseling
+                  package. It exists only to prove that money is captured,
+                  recorded, and settled to the intended bank account.
+                </div>
+              )}
 
               <h3 className="mb-5 text-xl font-bold text-slate-900">
                 What your package includes
@@ -276,8 +295,9 @@ const Pricing = () => {
                       What happens after payment?
                     </p>
                     <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                      Once the payment is verified, Meenu will contact you using
-                      the details provided here to begin your personal onboarding.
+                      {PAYMENT_TEST_MODE
+                        ? 'We will reconcile the Razorpay order, captured payment, signed webhook, settlement reference, and final bank credit. No counseling package is activated.'
+                        : 'Once the payment is verified, Meenu will contact you using the details provided here to begin your personal onboarding.'}
                     </p>
                   </div>
                 </div>
@@ -407,6 +427,25 @@ const Pricing = () => {
                     />
                   </label>
 
+                  {PAYMENT_TEST_MODE && (
+                    <label className="block">
+                      <span className="mb-2 block text-sm font-bold text-slate-700">
+                        Private verification code
+                      </span>
+                      <input
+                        type="password"
+                        value={testToken}
+                        onChange={(event) => setTestToken(event.target.value)}
+                        required
+                        autoComplete="off"
+                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.15)]"
+                      />
+                      <span className="mt-2 block text-xs leading-relaxed text-slate-500">
+                        Must match the owner-only code stored in Vercel.
+                      </span>
+                    </label>
+                  )}
+
                   <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-white p-4 text-sm leading-relaxed text-slate-600">
                     <input
                       type="checkbox"
@@ -445,7 +484,9 @@ const Pricing = () => {
                       'Opening secure checkout…'
                     ) : (
                       <>
-                        Pay {PACKAGE_PRICE_DISPLAY} securely
+                        {PAYMENT_TEST_MODE
+                          ? `Pay ${PACKAGE_PRICE_DISPLAY} verification`
+                          : `Pay ${PACKAGE_PRICE_DISPLAY} securely`}
                         <FontAwesomeIcon
                           icon={faArrowRight}
                           className="ml-2 transition-transform group-hover:translate-x-1"

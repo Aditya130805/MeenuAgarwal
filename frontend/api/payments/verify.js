@@ -53,7 +53,7 @@ export default async function handler(request, response) {
 
     if (!detailsMatch) {
       throw verificationError(
-        'Payment details did not match the counseling package.',
+        'Payment details did not match the configured checkout.',
       );
     }
 

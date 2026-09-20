@@ -1,7 +1,8 @@
 export const PACKAGE = Object.freeze({
-  name: 'Complete Counseling Package',
-  amount: 3_000_000,
+  name: 'Payment Gateway Verification',
+  amount: 100,
   currency: 'INR',
+  testMode: true,
 });
 
 export const CUSTOMER_LIMITS = Object.freeze({

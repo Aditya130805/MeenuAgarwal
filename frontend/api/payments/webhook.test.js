@@ -27,7 +27,7 @@ const validEvent = Buffer.from(
       order: {
         entity: {
           id: 'order_valid123',
-          amount: 3_000_000,
+          amount: 100,
           currency: 'INR',
         },
       },

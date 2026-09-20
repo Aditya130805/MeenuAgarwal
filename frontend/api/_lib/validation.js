@@ -1,3 +1,4 @@
+import { timingSafeEqual } from 'node:crypto';
 import {
   CUSTOMER_LIMITS,
   ORDER_ID_PATTERN,
@@ -61,4 +62,30 @@ export const validateOrderId = (orderId) => {
     throw badRequest('Invalid order reference.');
   }
   return orderId;
+};
+
+export const validatePaymentAccess = (token) => {
+  const expected = process.env.PAYMENT_TEST_TOKEN;
+  if (!expected) {
+    const error = new Error('Payment verification access is not configured.');
+    error.statusCode = 503;
+    throw error;
+  }
+
+  const suppliedBuffer = Buffer.from(
+    typeof token === 'string' ? token : '',
+    'utf8',
+  );
+  const expectedBuffer = Buffer.from(expected, 'utf8');
+  const valid =
+    suppliedBuffer.length === expectedBuffer.length &&
+    timingSafeEqual(suppliedBuffer, expectedBuffer);
+
+  if (!valid) {
+    const error = new Error(
+      'This verification checkout is restricted to the account owner.',
+    );
+    error.statusCode = 403;
+    throw error;
+  }
 };

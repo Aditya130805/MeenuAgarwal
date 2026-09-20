@@ -11,7 +11,10 @@ import {
   createRazorpayOrder,
   getPublicKeyId,
 } from '../_lib/razorpay.js';
-import { validateCustomer } from '../_lib/validation.js';
+import {
+  validateCustomer,
+  validatePaymentAccess,
+} from '../_lib/validation.js';
 
 const createReceipt = () =>
   `MA-${Date.now().toString(36)}-${randomBytes(4).toString('hex')}`.toUpperCase();
@@ -20,7 +23,9 @@ export default async function handler(request, response) {
   if (!requireMethod(request, response, 'POST')) return;
 
   try {
-    const customer = validateCustomer(await readJsonBody(request));
+    const body = await readJsonBody(request);
+    if (PACKAGE.testMode) validatePaymentAccess(body.testToken);
+    const customer = validateCustomer(body);
     const receipt = createReceipt();
     const order = await createRazorpayOrder({
       amount: PACKAGE.amount,

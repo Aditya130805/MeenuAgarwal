@@ -25,6 +25,7 @@ const createResponse = () => ({
 
 describe('create-order endpoint', () => {
   beforeEach(() => {
+    process.env.PAYMENT_TEST_TOKEN = 'owner-verification-code';
     createOrderRecord.mockReset().mockResolvedValue({});
     createRazorpayOrder.mockReset().mockImplementation(async (input) => ({
       id: 'order_created123',
@@ -34,7 +35,7 @@ describe('create-order endpoint', () => {
     }));
   });
 
-  it('ignores a client-supplied amount and creates exactly INR 30,000', async () => {
+  it('ignores a client-supplied amount and creates exactly INR 1', async () => {
     const request = {
       method: 'POST',
       body: {
@@ -42,6 +43,7 @@ describe('create-order endpoint', () => {
         email: 'customer@example.com',
         phone: '9876543210',
         acceptedTerms: true,
+        testToken: 'owner-verification-code',
         amount: 1,
         currency: 'USD',
       },
@@ -52,10 +54,10 @@ describe('create-order endpoint', () => {
 
     expect(response.statusCode).toBe(201);
     expect(createRazorpayOrder).toHaveBeenCalledWith(
-      expect.objectContaining({ amount: 3_000_000, currency: 'INR' }),
+      expect.objectContaining({ amount: 100, currency: 'INR' }),
     );
     expect(JSON.parse(response.body)).toMatchObject({
-      amount: 3_000_000,
+      amount: 100,
       currency: 'INR',
     });
   });
@@ -68,6 +70,7 @@ describe('create-order endpoint', () => {
         email: 'customer@example.com',
         phone: '9876543210',
         acceptedTerms: false,
+        testToken: 'owner-verification-code',
       },
     };
     const response = createResponse();
@@ -75,6 +78,25 @@ describe('create-order endpoint', () => {
     await handler(request, response);
 
     expect(response.statusCode).toBe(400);
+    expect(createRazorpayOrder).not.toHaveBeenCalled();
+  });
+
+  it('rejects a public request without the owner verification code', async () => {
+    const request = {
+      method: 'POST',
+      body: {
+        name: 'Test Customer',
+        email: 'customer@example.com',
+        phone: '9876543210',
+        acceptedTerms: true,
+        testToken: 'wrong-code',
+      },
+    };
+    const response = createResponse();
+
+    await handler(request, response);
+
+    expect(response.statusCode).toBe(403);
     expect(createRazorpayOrder).not.toHaveBeenCalled();
   });
 });
