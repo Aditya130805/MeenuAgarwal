@@ -16,13 +16,13 @@ const Hero = () => {
         <div className="grid overflow-hidden rounded-[28px] bg-white shadow-[0_18px_55px_rgba(28,84,109,0.2)] md:grid-cols-[1.15fr_0.85fr]">
           <div className="p-7 sm:p-10 lg:p-12">
             <h2 className="max-w-xl text-2xl font-extrabold leading-tight text-[var(--dark-blue-color)] sm:text-3xl lg:text-4xl">
-              Guidance for the career—and the person—you are becoming.
+              Guidance for the career, and the person, you are becoming.
             </h2>
             <p className="mt-6 max-w-2xl leading-8 text-slate-700">
               For over 15 years, I have helped students choose learning paths
               that build employability, adaptability, and confidence. Their
               journeys show that the right education, paired with honest
-              guidance, prepares you for life—not only for a job.
+              guidance, prepares you for life, not only for a job.
             </p>
             <p className="mt-5 max-w-2xl leading-8 text-slate-700">
               I am <strong className="text-[var(--dark-blue-color)]">Meenu Agarwal</strong>,
