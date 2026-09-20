@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BookingCTA from '../components/BookingCTA';
 import ContactButton from '../components/ContactButton';
+import PageHero from '../components/PageHero';
 import studentPointingImage from '../assets/Images/studentPointing.webp';
 
 const Contact = () => {
@@ -27,114 +28,127 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
-      {/* Main content section */}
-      <section className="relative flex flex-col md:flex-row justify-center items-center w-full min-h-[638px] py-10 md:py-0 md:h-[700px]">
-        {/* Student image - hidden on small screens, visible from medium screens */}
-        <img 
-          src={studentPointingImage} 
-          alt="Student pointing at our contact details" 
-          className="hidden md:block absolute left-0 md:left-5 lg:left-10 bottom-0 h-[300px] md:h-[400px] lg:h-[550px] z-0"
-          decoding="async"
-          fetchPriority="high"
-        />
-        
-        {/* Spacing div - adjusts based on screen size */}
-        <div className="hidden md:block w-0 md:w-[30%] lg:w-[40%] h-[638px]"></div>
-        
-        {/* Form container - takes full width on small screens */}
-        <div className="w-full md:w-[70%] lg:w-[55%] min-h-[638px] flex justify-center md:justify-start items-center px-4 md:px-0">
-          <div className="w-full md:w-[90%] lg:w-[82%] bg-white rounded-[25px] shadow-[0_8px_24px_rgba(35,105,138,0.2)] my-8 md:my-0">
-            <form 
-              className="w-full flex flex-col p-5 md:p-[30px] lg:p-[30px_60px] rounded-[10px]"
+      <PageHero
+        title="Let’s talk about your plans"
+        description="Tell Meenu where you are in your journey, what you are considering, and where you feel stuck. A thoughtful reply starts with the right context."
+      />
+
+      <section className="relative z-10 mx-auto -mt-20 max-w-6xl px-4 pb-16 md:-mt-24 md:px-8 md:pb-24">
+        <div className="grid overflow-hidden rounded-[28px] bg-white shadow-[0_18px_55px_rgba(28,84,109,0.2)] md:grid-cols-[0.78fr_1.22fr]">
+          <div className="relative hidden min-h-[620px] overflow-hidden bg-[#edf5f7] md:flex md:flex-col md:justify-between md:p-10">
+            <div className="relative z-10 max-w-xs">
+              <h2 className="text-3xl font-extrabold leading-tight text-[var(--dark-blue-color)]">
+                Start with a conversation.
+              </h2>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Share your goals and questions. Meenu will respond personally,
+                without passing you through a call centre.
+              </p>
+            </div>
+            <div className="relative h-[390px]">
+              <div className="absolute -bottom-24 -left-28 h-72 w-72 rounded-full border border-[rgba(35,105,138,0.12)]" />
+              <img
+                src={studentPointingImage}
+                alt="Student pointing toward the contact form"
+                className="absolute bottom-[-2.5rem] left-1/2 h-[430px] max-w-none -translate-x-1/2"
+                decoding="async"
+                fetchPriority="high"
+              />
+            </div>
+          </div>
+
+          <form
+              className="flex w-full flex-col p-6 sm:p-9 lg:p-12"
               autoComplete="off"
               id="contactForm"
               action="https://formsubmit.co/meenu@meenuagarwal.in"
               method="POST"
             >
-              <h3 className="text-2xl text-[rgb(85,85,85)] font-extrabold mb-5">
-                Leave me a message:
-              </h3>
-              
-              <div className="w-full flex flex-col sm:flex-row gap-4 sm:gap-[35px]">
-                <input 
+              <div className="mb-7">
+                <h2 className="text-2xl font-extrabold text-[var(--dark-blue-color)] sm:text-3xl">
+                  Leave me a message
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                  Fields marked with an asterisk are required.
+                </p>
+              </div>
+
+              <div className="grid gap-5 sm:grid-cols-2">
+                <input
                   type="text"
                   name="firstName"
                   placeholder="First name *"
                   required
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="w-full sm:w-1/2 border-0 my-[10px] px-[5px] py-[15px] sm:py-[20px] outline-none border-b-2 border-black/20 text-base focus:border-b-2 focus:border-[rgba(35,105,138,0.8)] transition-all duration-300"
+                  autoComplete="given-name"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3.5 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.14)]"
                 />
-                <input 
+                <input
                   type="text"
                   name="lastName"
                   placeholder="Last name *"
                   required
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="w-full sm:w-1/2 border-0 my-[10px] px-[5px] py-[15px] sm:py-[20px] outline-none border-b-2 border-black/20 text-base focus:border-b-2 focus:border-[rgba(35,105,138,0.8)] transition-all duration-300"
+                  autoComplete="family-name"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3.5 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.14)]"
                 />
-              </div>
-              
-              <div className="w-full flex flex-col sm:flex-row gap-4 sm:gap-[35px]">
-                <input 
+                <input
                   type="email"
                   name="email"
                   placeholder="Email-id *"
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full sm:w-1/2 border-0 my-[10px] px-[5px] py-[15px] sm:py-[20px] outline-none border-b-2 border-black/20 text-base focus:border-b-2 focus:border-[rgba(35,105,138,0.8)] transition-all duration-300"
+                  autoComplete="email"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3.5 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.14)]"
                 />
-                <input 
-                  type="text"
+                <input
+                  type="tel"
                   name="phone"
                   placeholder="Phone number *"
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full sm:w-1/2 border-0 my-[10px] px-[5px] py-[15px] sm:py-[20px] outline-none border-b-2 border-black/20 text-base focus:border-b-2 focus:border-[rgba(35,105,138,0.8)] transition-all duration-300"
+                  autoComplete="tel"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3.5 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.14)]"
                 />
-              </div>
-              
-              <div className="w-full flex flex-col sm:flex-row gap-4 sm:gap-[35px]">
-                <input 
+                <input
                   type="text"
                   name="course"
                   placeholder="Course"
                   value={formData.course}
                   onChange={handleChange}
-                  className="w-full sm:w-1/2 border-0 my-[10px] px-[5px] py-[15px] sm:py-[20px] outline-none border-b-2 border-black/20 text-base focus:border-b-2 focus:border-[rgba(35,105,138,0.8)] transition-all duration-300"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3.5 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.14)]"
                 />
-                <input 
+                <input
                   type="text"
                   name="country"
                   placeholder="Country"
                   value={formData.country}
                   onChange={handleChange}
-                  className="w-full sm:w-1/2 border-0 my-[10px] px-[5px] py-[15px] sm:py-[20px] outline-none border-b-2 border-black/20 text-base focus:border-b-2 focus:border-[rgba(35,105,138,0.8)] transition-all duration-300"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3.5 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.14)]"
                 />
               </div>
-              
-              <textarea 
+
+              <textarea
                 id="message"
                 name="message"
-                rows="2"
+                rows="4"
                 placeholder="Any extra remarks you would like to add"
                 value={formData.message}
                 onChange={handleChange}
-                className="border-0 my-[10px] px-[5px] py-[20px] outline-none border-b-2 border-black/20 text-base focus:border-b-2 focus:border-[rgba(35,105,138,0.8)] transition-all duration-300 resize-none"
+                className="mt-5 resize-none rounded-xl border border-slate-300 px-4 py-3.5 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.14)]"
               />
-              
-              <button 
+
+              <button
                 type="submit"
-                className="py-[15px] bg-[var(--coral-color)] text-white text-lg border-0 outline-none cursor-pointer w-[150px] mx-auto mt-5 rounded-[30px] shadow-[0_4px_12px_rgba(255,112,67,0.3)] transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(255,112,67,0.4)]"
+                className="mt-7 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[var(--coral-color)] px-8 text-base font-bold text-white shadow-[0_7px_18px_rgba(255,112,67,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_9px_22px_rgba(255,112,67,0.38)] sm:w-fit"
               >
-                Submit
+                Send message
               </button>
             </form>
-          </div>
         </div>
       </section>
       

@@ -10,10 +10,9 @@ import { SESSION_DURATION_MINUTES } from '../config/booking';
  * most engaged visitor — the one who read to the bottom — was left with no
  * next step. This is that next step.
  *
- * Sits on a white band with a gradient panel inside rather than being a
- * full-bleed gradient itself, because the sections it follows differ per page
- * (blue on Home and Contact, white on Videos, light grey on Countries). The
- * white band guarantees separation in all four cases.
+ * Sits on a white band with a quiet pale-blue panel inside. The lighter finish
+ * prevents the CTA from competing with the blue page headers while keeping the
+ * coral booking action visually dominant.
  */
 const BookingCTA = ({ heading, body }) => {
   // On the contact page the secondary "send a message" link would point at the
@@ -22,12 +21,12 @@ const BookingCTA = ({ heading, body }) => {
 
   return (
     <section className="w-full bg-white py-16 md:py-20 px-4">
-      <div className="max-w-5xl mx-auto rounded-[25px] bg-gradient-to-r from-[var(--light-blue-color)] to-[var(--dark-blue-color)] px-6 py-12 md:px-14 md:py-16 text-center shadow-[0_12px_32px_rgba(35,105,138,0.25)]">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+      <div className="max-w-5xl mx-auto rounded-[25px] border border-[rgba(35,105,138,0.14)] bg-[#edf5f7] px-6 py-12 md:px-14 md:py-16 text-center shadow-[0_10px_28px_rgba(35,105,138,0.12)]">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--dark-blue-color)] mb-4">
           {heading ?? 'Ready to talk about your options?'}
         </h2>
         <div className="w-24 h-1 bg-[var(--coral-color)] mx-auto mb-6"></div>
-        <p className="text-white/90 text-base md:text-lg max-w-2xl mx-auto mb-9 leading-relaxed">
+        <p className="text-slate-600 text-base md:text-lg max-w-2xl mx-auto mb-9 leading-relaxed">
           {body ??
             `Book a free ${SESSION_DURATION_MINUTES}-minute session with Meenu — one-on-one, no obligation, and nothing to pay.`}
         </p>
@@ -46,7 +45,7 @@ const BookingCTA = ({ heading, body }) => {
           {!isContactPage && (
             <Link
               to="/contact"
-              className="text-white/90 font-semibold underline underline-offset-4 hover:text-white transition-colors duration-300"
+              className="text-[var(--dark-blue-color)] font-semibold underline underline-offset-4 hover:opacity-70 transition-opacity duration-300"
             >
               Or send a message
             </Link>

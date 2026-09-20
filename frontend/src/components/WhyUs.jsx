@@ -45,7 +45,7 @@ const WhyUs = () => {
         </div>
         
         <p className="text-base md:text-xl leading-7 md:leading-9 text-white font-normal max-w-4xl mx-auto text-center">
-          I firmly believe in true career guidance — not just 'admissions into universities'. I take pride in personally counseling every student, taking the time to deeply understand their aspirations and guiding them towards choices that genuinely align with their goals.
+          I firmly believe in true career guidance, not just 'admissions into universities'. I take pride in personally counseling every student, taking the time to deeply understand their aspirations and guiding them towards choices that genuinely align with their goals.
         </p>
       </div>
     </section>
