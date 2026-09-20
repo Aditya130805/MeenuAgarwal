@@ -21,7 +21,7 @@ const BookingCTA = ({ heading, body }) => {
 
   return (
     <section className="w-full bg-white py-16 md:py-20 px-4">
-      <div className="max-w-5xl mx-auto rounded-[25px] border border-[rgba(35,105,138,0.14)] bg-[#e5eff2] px-6 py-12 md:px-14 md:py-16 text-center shadow-[0_10px_28px_rgba(35,105,138,0.12)]">
+      <div className="max-w-5xl mx-auto rounded-[25px] border border-[rgba(35,105,138,0.14)] bg-[#edf5f7] px-6 py-12 md:px-14 md:py-16 text-center shadow-[0_10px_28px_rgba(35,105,138,0.12)]">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--dark-blue-color)] mb-4">
           {heading ?? 'Ready to talk about your options?'}
         </h2>
