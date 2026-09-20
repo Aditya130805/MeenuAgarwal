@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import testimonial1Image from '../assets/Images/testimonial1Profile.webp';
 import testimonial2Image from '../assets/Images/testimonial2Profile.webp';
 import testimonial3Image from '../assets/Images/testimonial3Profile.webp';

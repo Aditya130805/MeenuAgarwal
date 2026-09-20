@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BookingCTA from '../components/BookingCTA';
 import ContactButton from '../components/ContactButton';
+import PageHero from '../components/PageHero';
 import UKFlag from '../assets/Images/UKFlag.webp';
 import ItalyFlag from '../assets/Images/italyFlag.webp';
 import NetherlandsFlag from '../assets/Images/netherlandsFlag.webp';
@@ -10,48 +11,62 @@ const Countries = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
-      {/* Why Study Abroad Section */}
-      <section className="py-12 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
-        <div className="mb-12 flex flex-col items-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4">
-            Why study in Europe?
-          </h2>
-          <div className="w-24 h-1 bg-[var(--coral-color)] mb-8"></div>
-          
-          <ul className="space-y-8">
-            <li className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl md:text-2xl font-semibold text-[var(--coral-color)] mb-3">
-                Internationally recognized degrees
+
+      <PageHero
+        title="Find the country that fits your future"
+        description="The right destination is not simply the most popular one. Compare academic style, cost, career access, and everyday life before you choose."
+      />
+
+      <section className="relative z-10 mx-auto -mt-20 max-w-6xl px-4 pb-16 md:-mt-24 md:px-8 md:pb-24">
+        <div className="rounded-[28px] bg-white p-7 shadow-[0_18px_55px_rgba(28,84,109,0.2)] sm:p-10 lg:p-12">
+          <div className="mb-8 max-w-2xl">
+            <h2 className="text-2xl font-extrabold text-[var(--dark-blue-color)] sm:text-3xl">
+              Why students choose Europe
+            </h2>
+            <p className="mt-3 leading-relaxed text-slate-600">
+              Strong degrees, focused course structures, and access to several
+              distinct education systems make Europe worth considering
+              carefully.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3 md:gap-0">
+            <div className="md:pr-8">
+              <h3 className="text-lg font-bold text-[var(--dark-blue-color)]">
+                Degrees that travel
               </h3>
-              <p className="text-gray-700">
-                Universities in the UK, Italy, and Netherlands, are all well-known for the excellent quality of education and practical skills that they provide. Many organisations, even apart from those in these countries, value the degrees obtained from these institutions. This can be very crucial and can make a huge difference when applying for jobs and searching for placements in the entirety of Europe.
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                Universities across the UK, Italy, and the Netherlands award
+                qualifications recognised by employers and institutions well
+                beyond their borders.
               </p>
-            </li>
-            
-            <li className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl md:text-2xl font-semibold text-[var(--coral-color)] mb-3">
-                Shorter duration of courses
+            </div>
+            <div className="border-t border-slate-200 pt-8 md:border-l md:border-t-0 md:px-8 md:pt-0">
+              <h3 className="text-lg font-bold text-[var(--dark-blue-color)]">
+                More focused timelines
               </h3>
-              <p className="text-gray-700">
-                Undergraduate courses in Europe often last for no more than three years, as opposed to the four-year courses in colleges in the United States. As a result, the programmes are less time-consuming and more cost-effective for all of the students that attend. Furthermore, several colleges there provide a one-year work internship in the industry too, which can help you improve your practical abilities, and gain crucial work experience. As for postgraduate programs, they can be as short as just lasting for a single year, while also teaching you everything that's important during that period.
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                Many undergraduate degrees take three years, while postgraduate
+                programmes can be completed in one—reducing both time and total
+                cost.
               </p>
-            </li>
-            
-            <li className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl md:text-2xl font-semibold text-[var(--coral-color)] mb-3">
-                Great infrastructure and a vast assortment of subjects to select from
+            </div>
+            <div className="border-t border-slate-200 pt-8 md:border-l md:border-t-0 md:pl-8 md:pt-0">
+              <h3 className="text-lg font-bold text-[var(--dark-blue-color)]">
+                Learning built for opportunity
               </h3>
-              <p className="text-gray-700">
-                Education infrastructure is a critical component of the university learning setting. High-quality infrastructure, among other things, promotes better education, increases student results, and lowers dropout rates, according to credible data. This is omnipresent in all universities in Europe, especially in the UK, Italy, and Netherlands. Additionally, as mentioned above, you can select any subject that you are passionate about there and catch your dreams.
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                Modern facilities, broad subject choice, and practical industry
+                exposure help students connect their studies to real career
+                paths.
               </p>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </section>
       
       {/* Countries Section */}
-      <section className="py-12 px-4 md:px-8 lg:px-16 bg-gray-50">
+      <section className="bg-gray-50 px-4 py-16 md:px-8 lg:px-16 lg:py-20">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4">
