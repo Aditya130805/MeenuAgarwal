@@ -49,6 +49,7 @@ const Navbar = () => {
         <NavLink href="/" active={currentPath === '/'}>Home</NavLink>
         <NavLink href="/countries" active={currentPath === '/countries'}>Countries</NavLink>
         <NavLink href="/videos" active={currentPath === '/videos'}>Videos</NavLink>
+        <NavLink href="/pricing" active={currentPath === '/pricing'}>Pricing</NavLink>
         {/* <NavLink href="/scholarships" active={currentPath === '/scholarships'}>Scholarships</NavLink> */}
         <NavLink href="/contact" active={currentPath === '/contact'}>Contact</NavLink>
         <BookButton className="ml-4 mr-[20%]" />
@@ -62,6 +63,7 @@ const Navbar = () => {
           <MobileNavLink href="/" active={currentPath === '/'}>Home</MobileNavLink>
           <MobileNavLink href="/countries" active={currentPath === '/countries'}>Countries</MobileNavLink>
           <MobileNavLink href="/videos" active={currentPath === '/videos'}>Videos</MobileNavLink>
+          <MobileNavLink href="/pricing" active={currentPath === '/pricing'}>Pricing</MobileNavLink>
           {/* <MobileNavLink href="/scholarships" active={currentPath === '/scholarships'}>Scholarships</MobileNavLink> */}
           <MobileNavLink href="/contact" active={currentPath === '/contact'}>Contact</MobileNavLink>
           <BookButton className="mt-1" />
