@@ -98,7 +98,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         UK has a diverse multi-cultural environment
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         There are relatively few places in the world that have a rich past as well as the conveniences of the modern world. The United Kingdom has it all. With its racial, cultural, and religious diversity, the United Kingdom is particularly receptive to different customs and cultures, which is ideal for foreign students.
                       </p>
                     </li>
@@ -107,7 +107,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         The reinstatement of the post-study work visa
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         After finishing your studies in the UK, you can now stay for two years (on a Student route PSW visa). This was disbanded earlier and has just recently been re-introduced. Make sure to make the most of it.
                       </p>
                     </li>
@@ -116,7 +116,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         Health benefits
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         As an international student, you will have access to free medical treatment through the National Health Service while studying in the UK (NHS). You will only be required to pay an Immigration Health Surcharge (IHS) when applying for a student visa in order to get this benefit.
                       </p>
                     </li>
@@ -147,7 +147,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         It is an affordable destination
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         The average tuition fees for any and all degrees range from just 850-1000 EUR/year. The average living expenses range from 700-1000 EUR/month including housing, transportation, food, and fun.
                       </p>
                     </li>
@@ -156,7 +156,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         There are several top universities with a splendid international environment
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         For example, the University of Bologna is known to be the origin of the current Western higher education system and the oldest university in all of Europe. Additionally, other public universities are also quite well-known, such as Politecnico di Milano, Politecnico di Torino, University of Siena, Univeresity of Pavia, University of Padua, etc.
                       </p>
                     </li>
@@ -165,7 +165,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         Italy is surrounded by art, history, and fashion
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         It is known to be the birthplace of Renaissance art; anywhere in Italy you go, you'll find amazing architectural wonders that stood the test of time. 51 UNESCO World Heritage Sites, to be precise, the most in any single country. It is filled with wonders to explore.
                       </p>
                     </li>
@@ -196,7 +196,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         Innovative teaching methods
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         Getting straight to the point, the Dutch educational system emphasises teamwork. Good personal relationships between professors and students are also highly valued in Dutch universities. As a result, majority of tutorials and seminars are held in small groups of 15-30 students. This teamwork approach helps you improve not just your academic talents but also your ability to operate as part of a team. Many practical components are also included. There is a strong focus on meaningful practical experience, and institutions here have numerous relationships with both Dutch and foreign enterprises.
                       </p>
                     </li>
@@ -205,7 +205,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         Affordable living expenses
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         In comparison to other Western European countries, the cost of living in the Netherlands is relatively low - roughly between €800 and €1,000 every month. Additionally, as a student, you can avail many discounts in restaurants, museums, and theatres. Be sure to get an ISIC Student card to take advantage of even more privileges and savings.
                       </p>
                     </li>
@@ -214,7 +214,7 @@ const Countries = () => {
                       <h4 className="text-xl font-semibold text-[var(--coral-color)]">
                         Excellent travel opportunities
                       </h4>
-                      <p className="mt-2 text-gray-700 pl-4 border-l-4 border-[var(--light-blue-color)]">
+                      <p className="mt-2 pl-4 leading-7 text-gray-700 border-l-4 border-[var(--light-blue-color)]">
                         The Netherlands, also known as "the gateway to Europe", is ideally situated, with easy access to major European cities; Berlin, Brussels, Paris, and London are just a one-hour flight away from Amsterdam. Additionally, it is quite simple and convenient to move around the city on a bicycle, the favourite mode of transportation for the Dutch and also the cheapest. There are specific routes for cyclists, so you can cycle with peace and confidence.
                       </p>
                     </li>
