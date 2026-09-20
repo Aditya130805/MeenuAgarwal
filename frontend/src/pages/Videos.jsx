@@ -1,18 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BookingCTA from '../components/BookingCTA';
 import ContactButton from '../components/ContactButton';
+import PageHero from '../components/PageHero';
 
 const Videos = () => {
-  // State to track if animations should play
-  const [animate, setAnimate] = useState(false);
-
-  // Enable animations after component mounts
-  useEffect(() => {
-    setAnimate(true);
-  }, []);
-
   // Sample data for YouTube shorts
   // In a real application, this could come from an API or CMS
   const [shorts] = useState([
@@ -92,22 +85,40 @@ const Videos = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
-      {/* Main content section */}
-      <section className={`w-full py-12 ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
-        <div className="container mx-auto px-4">
-          {/* Page Header */}
-          <div className="mb-16 flex flex-col items-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4">
-              Video Library
+
+      <PageHero
+        title="Practical advice, explained clearly"
+        description="Explore quick answers and focused guides about courses, applications, visas, and the decisions that shape a study-abroad journey."
+      />
+
+      <section className="relative z-10 mx-auto -mt-20 max-w-5xl px-4 md:-mt-24 md:px-8">
+        <div className="grid overflow-hidden rounded-[28px] bg-white shadow-[0_18px_55px_rgba(28,84,109,0.2)] md:grid-cols-2">
+          <div className="p-7 sm:p-9 md:border-r md:border-slate-200">
+            <p className="text-sm font-semibold text-slate-500">Short answers</p>
+            <h2 className="mt-2 text-2xl font-extrabold text-[var(--dark-blue-color)]">
+              Learn something useful in under a minute
             </h2>
-            <div className="w-24 h-1 bg-[var(--coral-color)] mb-8"></div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center">
-              Comprehensive video content about studying abroad, visa applications, and more. 
-              From quick tips to detailed guides - everything you need for your educational journey.
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              Start with concise advice on common questions, mistakes, and
+              choices students face.
             </p>
           </div>
+          <div className="border-t border-slate-200 bg-[#f5f9fa] p-7 sm:p-9 md:border-t-0">
+            <p className="text-sm font-semibold text-slate-500">Deeper context</p>
+            <h2 className="mt-2 text-2xl font-extrabold text-[var(--dark-blue-color)]">
+              Take time with the decisions that need it
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              Use the longer guides when you need the reasoning behind a course,
+              destination, or application strategy.
+            </p>
+          </div>
+        </div>
+      </section>
 
+      {/* Main content section */}
+      <section className="w-full py-16 md:py-20">
+        <div className="container mx-auto px-4">
           {/* Shorts Section */}
           <div className="mb-20">
             <div className="mb-8 flex flex-col items-center">
