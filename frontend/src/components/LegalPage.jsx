@@ -13,7 +13,7 @@ const LegalPage = ({ title, introduction, children }) => (
           <p className="mb-8 text-sm font-semibold text-slate-500">
             Last updated: 20 September 2026
           </p>
-          <div className="space-y-8 [&_a]:font-semibold [&_a]:text-[var(--dark-blue-color)] [&_a]:underline [&_h2]:text-xl [&_h2]:font-extrabold [&_h2]:text-[var(--dark-blue-color)] [&_li]:leading-relaxed [&_p]:leading-relaxed [&_ul]:ml-5 [&_ul]:list-disc [&_ul]:space-y-2">
+          <div className="space-y-8 [&_a]:font-semibold [&_a]:text-[var(--dark-blue-color)] [&_a]:underline [&_h2]:text-xl [&_h2]:font-extrabold [&_h2]:text-[var(--dark-blue-color)] [&_li]:leading-relaxed [&_p]:leading-relaxed [&_section]:space-y-3 [&_ul]:ml-5 [&_ul]:list-disc [&_ul]:space-y-2">
             {children}
           </div>
         </article>

@@ -225,7 +225,7 @@ const Pricing = () => {
             <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
               One complete counseling package
             </h1>
-            <div className="mx-auto my-6 h-1 w-24 bg-white/55" />
+            <div className="mx-auto my-6 h-1 w-24 bg-[var(--coral-color)]" />
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
               Clear, one-on-one support for students and families navigating the
               study-abroad journey—without confusing tiers or hidden add-ons.
