@@ -5,10 +5,12 @@ settlements. Complete each launch gate in order. Never paste a Key Secret,
 webhook secret, database URL, OTP, UPI PIN, or bank password into chat, source
 code, email, or a support ticket.
 
-The current branch is deliberately locked in **live verification mode**:
+The current branch separates public pricing from **owner verification mode**:
 
-- Product: Payment Gateway Verification
-- Amount: INR 1 (100 paise), Razorpay's minimum INR order amount
+- Public `/pricing`: Complete Counseling Package at INR 30,000, with checkout
+  disabled until launch
+- Unlinked `/payment-verification`: INR 1 (100 paise), Razorpay's minimum INR
+  order amount
 - Type: One-time payment
 - Provider: Razorpay Standard Checkout
 - Access: Owner-only code stored as `PAYMENT_TEST_TOKEN`
@@ -20,8 +22,10 @@ settled, and matched to the intended bank account.
 
 ## 1. What is already implemented
 
-- `/pricing` clearly identifies the restricted INR 1 verification checkout and
-  states that it does not purchase or activate counseling.
+- `/pricing` shows the real INR 30,000 package and does not collect payment
+  details while verification is underway.
+- `/payment-verification` contains the restricted INR 1 checkout, is not linked
+  in navigation, and is marked `noindex`.
 - `/api/payments/create-order` creates the fixed-price order on the server.
 - Order creation requires the owner-only `PAYMENT_TEST_TOKEN`; the code is
   checked server-side and is never stored with the order.
@@ -225,17 +229,19 @@ Only the Razorpay account Owner/Admin should do the following:
 7. Put the live values only in Vercel's **Production** environment.
 8. Confirm the Production `DATABASE_URL` points to the production database.
 9. Redeploy production.
-10. Confirm `/pricing` displays ₹1, “Owner verification only,” and “Not a
-    package purchase.”
-11. Confirm no `rzp_test_` value is present in Production settings.
-12. Confirm the Production `PAYMENT_TEST_TOKEN` is long, unique, and known only
+10. Confirm `/pricing` displays ₹30,000 and has no enabled payment form.
+11. Confirm `/payment-verification` displays ₹1, “Owner verification only,”
+    and “Not a package purchase.”
+12. Confirm no `rzp_test_` value is present in Production settings.
+13. Confirm the Production `PAYMENT_TEST_TOKEN` is long, unique, and known only
     to the owner.
 
 ### Run the INR 1 live website verification
 
-Open the production `/pricing` page yourself, enter the private verification
-code, and pay INR 1 using an owner-controlled payment method. Do not share the
-code. This verifies the actual website integration and settlement route.
+Open the production `/payment-verification` page yourself, enter the private
+verification code, and pay INR 1 using an owner-controlled payment method. Do
+not share the route or code. This verifies the actual website integration and
+settlement route.
 
 Check all of the following:
 
@@ -258,8 +264,8 @@ Only after the INR 1 bank credit is reconciled:
 
 1. Change `api/_lib/payment-config.js` to name the Complete Counseling Package,
    set `amount: 3_000_000`, and set `testMode: false`.
-2. Change `src/config/payments.js` to `PAYMENT_TEST_MODE = false`,
-   `PACKAGE_PRICE_RUPEES = 30000`, and `PACKAGE_PRICE_DISPLAY = '₹30,000'`.
+2. Enable the verified checkout form on `/pricing` and remove the temporary
+   `/payment-verification` route.
 3. Update the amount assertions in payment tests back to `3_000_000`.
 4. Run tests, lint, build, and the dependency audit.
 5. Have a second person verify that UI, server configuration, Razorpay order

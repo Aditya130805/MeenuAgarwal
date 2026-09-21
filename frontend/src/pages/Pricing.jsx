@@ -18,9 +18,11 @@ import {
   PACKAGE_PRICE_DISPLAY,
   PACKAGE_PRICE_RUPEES,
   PAYMENT_SUCCESS_MESSAGE,
-  PAYMENT_TEST_MODE,
   PAYMENT_POLL_ATTEMPTS,
   PAYMENT_POLL_INTERVAL_MS,
+  VERIFICATION_NAME,
+  VERIFICATION_PRICE_DISPLAY,
+  VERIFICATION_PRICE_RUPEES,
 } from '../config/payments';
 
 const initialCustomer = { name: '', email: '', phone: '' };
@@ -49,7 +51,7 @@ const loadRazorpay = () =>
     document.body.appendChild(script);
   });
 
-const Pricing = () => {
+const Pricing = ({ verificationMode = false }) => {
   const [customer, setCustomer] = useState(initialCustomer);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [testToken, setTestToken] = useState('');
@@ -57,6 +59,13 @@ const Pricing = () => {
   const [message, setMessage] = useState('');
   const [reference, setReference] = useState('');
   const pollingCancelled = useRef(false);
+  const displayName = verificationMode ? VERIFICATION_NAME : PACKAGE_NAME;
+  const displayPrice = verificationMode
+    ? VERIFICATION_PRICE_DISPLAY
+    : PACKAGE_PRICE_DISPLAY;
+  const displayPriceRupees = verificationMode
+    ? VERIFICATION_PRICE_RUPEES
+    : PACKAGE_PRICE_RUPEES;
 
   useEffect(() => {
     pollingCancelled.current = false;
@@ -64,6 +73,31 @@ const Pricing = () => {
       pollingCancelled.current = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!verificationMode) return undefined;
+
+    const existingMeta = document.querySelector('meta[name="robots"]');
+    const previousContent = existingMeta?.getAttribute('content');
+    const robotsMeta = existingMeta || document.createElement('meta');
+    const previousTitle = document.title;
+
+    if (!existingMeta) {
+      robotsMeta.setAttribute('name', 'robots');
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute('content', 'noindex, nofollow, noarchive');
+    document.title = 'Payment Verification | Meenu Agarwal';
+
+    return () => {
+      document.title = previousTitle;
+      if (existingMeta && previousContent !== null) {
+        robotsMeta.setAttribute('content', previousContent);
+      } else {
+        robotsMeta.remove();
+      }
+    };
+  }, [verificationMode]);
 
   const updateCustomer = (event) => {
     const { name, value } = event.target;
@@ -98,9 +132,7 @@ const Pricing = () => {
 
     setPaymentState('pending');
     setMessage(
-      PAYMENT_TEST_MODE
-        ? 'Razorpay is still confirming the ₹1 verification payment. Keep the reference number and do not pay again while we reconcile it.'
-        : 'Razorpay is still confirming the payment. Keep your reference number and do not pay again. We will verify it before onboarding.',
+      'Razorpay is still confirming the ₹1 verification payment. Keep the reference number and do not pay again while we reconcile it.',
     );
   };
 
@@ -135,7 +167,7 @@ const Pricing = () => {
         amount: order.amount,
         currency: order.currency,
         name: 'Meenu Agarwal',
-        description: PACKAGE_NAME,
+        description: VERIFICATION_NAME,
         order_id: order.orderId,
         prefill: customer,
         notes: { receipt: order.receipt },
@@ -224,14 +256,14 @@ const Pricing = () => {
               Personal guidance, from first plan to departure
             </p>
             <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
-              {PAYMENT_TEST_MODE
+              {verificationMode
                 ? 'Verify the payment gateway end to end'
                 : 'One complete counseling package'}
             </h1>
             <div className="mx-auto my-6 h-1 w-24 bg-[var(--coral-color)]" />
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
-              {PAYMENT_TEST_MODE
-                ? 'A restricted ₹1 live payment to confirm capture, signed webhooks, settlement, and the destination bank account before launch.'
+              {verificationMode
+                ? 'A restricted ₹1 payment to confirm order creation, capture, signed webhooks, and trusted server-side records before launch.'
                 : 'Clear, one-on-one support for students and families navigating the study-abroad journey—without confusing tiers or hidden add-ons.'}
             </p>
           </div>
@@ -243,23 +275,23 @@ const Pricing = () => {
               <div className="mb-8 flex flex-col gap-4 border-b border-slate-200 pb-8 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="mb-2 text-sm font-bold uppercase tracking-[0.16em] text-[var(--dark-blue-color)]">
-                    {PACKAGE_NAME}
+                    {displayName}
                   </p>
                   <h2 className="text-4xl font-extrabold text-[var(--dark-blue-color)] sm:text-5xl">
-                    {PACKAGE_PRICE_DISPLAY}
+                    {displayPrice}
                   </h2>
                 </div>
                 <div className="sm:text-right">
                   <p className="font-semibold text-slate-700">
-                    {PAYMENT_TEST_MODE ? 'Owner verification only' : 'One-time payment'}
+                    {verificationMode ? 'Owner verification only' : 'One-time payment'}
                   </p>
                   <p className="text-sm text-slate-500">
-                    {PAYMENT_TEST_MODE ? 'Not a package purchase' : 'Including all taxes'}
+                    {verificationMode ? 'Not a package purchase' : 'Including all taxes'}
                   </p>
                 </div>
               </div>
 
-              {PAYMENT_TEST_MODE && (
+              {verificationMode && (
                 <div className="mb-8 rounded-2xl border border-[rgba(35,105,138,0.18)] bg-[#edf5f7] p-5 text-sm leading-relaxed text-slate-700">
                   <strong className="text-[var(--dark-blue-color)]">
                     Live gateway verification mode.
@@ -295,7 +327,7 @@ const Pricing = () => {
                       What happens after payment?
                     </p>
                     <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                      {PAYMENT_TEST_MODE
+                      {verificationMode
                         ? 'We will reconcile the Razorpay order, captured payment, signed webhook, settlement reference, and final bank credit. No counseling package is activated.'
                         : 'Once the payment is verified, Meenu will contact you using the details provided here to begin your personal onboarding.'}
                     </p>
@@ -316,6 +348,37 @@ const Pricing = () => {
             </div>
 
             <aside className="bg-[#f0f6f8] p-7 sm:p-10 lg:p-12">
+              {!verificationMode ? (
+                <div className="flex h-full flex-col justify-center">
+                  <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[var(--dark-blue-color)] shadow-sm">
+                    <FontAwesomeIcon icon={faShieldHalved} />
+                  </span>
+                  <p className="mb-2 text-sm font-bold uppercase tracking-[0.16em] text-[var(--dark-blue-color)]">
+                    Secure online payment
+                  </p>
+                  <h2 className="text-3xl font-extrabold leading-tight text-slate-900">
+                    Final gateway verification is underway
+                  </h2>
+                  <p className="mt-4 leading-relaxed text-slate-600">
+                    The complete package price is ₹30,000, including all taxes.
+                    Online checkout will open after the payment gateway and
+                    destination bank account have been fully verified.
+                  </p>
+                  <div className="mt-6 rounded-2xl bg-white p-5 text-sm leading-relaxed text-slate-600 shadow-sm">
+                    No payment can currently be initiated from this public page.
+                    This prevents accidental charges while final verification is
+                    completed.
+                  </div>
+                  <Link
+                    to="/book"
+                    className="mt-7 inline-flex min-h-[52px] items-center justify-center rounded-full bg-[var(--coral-color)] px-6 font-bold text-white shadow-[0_8px_20px_rgba(255,112,67,0.3)] transition hover:-translate-y-0.5"
+                  >
+                    Book a free consultation
+                    <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                  </Link>
+                </div>
+              ) : (
+                <>
               <div className="mb-7 flex items-center gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[var(--dark-blue-color)] shadow-sm">
                   <FontAwesomeIcon icon={faLock} />
@@ -427,7 +490,7 @@ const Pricing = () => {
                     />
                   </label>
 
-                  {PAYMENT_TEST_MODE && (
+                  {verificationMode && (
                     <label className="block">
                       <span className="mb-2 block text-sm font-bold text-slate-700">
                         Private verification code
@@ -484,9 +547,7 @@ const Pricing = () => {
                       'Opening secure checkout…'
                     ) : (
                       <>
-                        {PAYMENT_TEST_MODE
-                          ? `Pay ${PACKAGE_PRICE_DISPLAY} verification`
-                          : `Pay ${PACKAGE_PRICE_DISPLAY} securely`}
+                        Pay {displayPrice} verification
                         <FontAwesomeIcon
                           icon={faArrowRight}
                           className="ml-2 transition-transform group-hover:translate-x-1"
@@ -501,11 +562,13 @@ const Pricing = () => {
                     </p>
                   )}
                   <p className="text-center text-xs leading-relaxed text-slate-500">
-                    Final charge: {PACKAGE_PRICE_DISPLAY} {PACKAGE_CURRENCY} (
-                    {PACKAGE_PRICE_RUPEES.toLocaleString('en-IN')} rupees).
+                    Final charge: {displayPrice} {PACKAGE_CURRENCY} (
+                    {displayPriceRupees.toLocaleString('en-IN')} rupees).
                     We never receive your card, bank, or UPI credentials.
                   </p>
                 </form>
+              )}
+                </>
               )}
             </aside>
           </div>
