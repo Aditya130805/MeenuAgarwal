@@ -162,6 +162,7 @@ const Pricing = ({ verificationMode = false }) => {
       setReference(order.receipt);
       setPaymentState('checkout');
 
+      let failedAttemptMessage = '';
       const checkout = new window.Razorpay({
         key: order.keyId,
         amount: order.amount,
@@ -174,6 +175,11 @@ const Pricing = ({ verificationMode = false }) => {
         theme: { color: '#FF7043' },
         modal: {
           ondismiss: () => {
+            if (failedAttemptMessage) {
+              setPaymentState('failed');
+              setMessage(failedAttemptMessage);
+              return;
+            }
             setPaymentState('cancelled');
             setMessage('Checkout was closed. You have not been charged by this attempt.');
           },
@@ -220,11 +226,11 @@ const Pricing = ({ verificationMode = false }) => {
       });
 
       checkout.on('payment.failed', (failure) => {
-        setPaymentState('failed');
-        setMessage(
+        failedAttemptMessage =
           failure.error?.description ||
-            'The payment was declined. You may try again or contact your bank.',
-        );
+          'The payment was declined. You may try again or contact your bank.';
+        setPaymentState('failed');
+        setMessage(failedAttemptMessage);
       });
 
       checkout.open();
