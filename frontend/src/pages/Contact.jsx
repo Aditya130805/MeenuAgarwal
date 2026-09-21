@@ -152,7 +152,7 @@ const Contact = () => {
         </div>
       </section>
       
-      {/* Location section */}
+      {/* Location section temporarily hidden.
       <section className="min-h-[620px] py-10 md:py-0 md:h-[620px] w-full bg-gradient-to-r from-[var(--light-blue-color)] to-[var(--dark-blue-color)] flex flex-col justify-center items-center overflow-visible">
         <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-[25px] px-4 text-center">
           Meet me!
@@ -174,6 +174,7 @@ const Contact = () => {
           />
         </div>
       </section>
+      */}
       
       <BookingCTA
         heading="Prefer to talk it through?"
