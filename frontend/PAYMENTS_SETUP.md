@@ -5,30 +5,18 @@ settlements. Complete each launch gate in order. Never paste a Key Secret,
 webhook secret, database URL, OTP, UPI PIN, or bank password into chat, source
 code, email, or a support ticket.
 
-The current branch separates public pricing from **owner verification mode**:
+The website is configured for the public counseling package:
 
-- Public `/pricing`: Complete Counseling Package at INR 30,000, with checkout
-  disabled until launch
-- Unlinked `/payment-verification`: INR 1 (100 paise), Razorpay's minimum INR
-  order amount
+- Product: Complete Counseling Package
+- Public `/pricing`: INR 30,000 (3,000,000 paise), including all taxes
 - Type: One-time payment
 - Provider: Razorpay Standard Checkout
-- Access: Owner-only code stored as `PAYMENT_TEST_TOKEN`
-- Fulfillment: None; this payment does not purchase counseling
-
-The intended public package remains INR 30,000. Do not switch back to that
-amount until the INR 1 payment has been captured, delivered by signed webhook,
-settled, and matched to the intended bank account.
+- Fulfillment: Meenu contacts the customer after verified payment
 
 ## 1. What is already implemented
 
-- `/pricing` shows the real INR 30,000 package and does not collect payment
-  details while verification is underway.
-- `/payment-verification` contains the restricted INR 1 checkout, is not linked
-  in navigation, and is marked `noindex`.
+- `/pricing` shows the INR 30,000 package and secure checkout.
 - `/api/payments/create-order` creates the fixed-price order on the server.
-- Order creation requires the owner-only `PAYMENT_TEST_TOKEN`; the code is
-  checked server-side and is never stored with the order.
 - `/api/payments/verify` verifies Razorpay's HMAC signature and fetches both
   payment and order status before returning `paid`.
 - `/api/payments/webhook` verifies the exact raw body, records provider event
@@ -155,7 +143,6 @@ In **Vercel Project → Settings → Environment Variables**, add:
 | `RAZORPAY_KEY_ID` | Test Key ID (`rzp_test_...`) | Live Key ID (`rzp_live_...`) |
 | `RAZORPAY_KEY_SECRET` | Test Key Secret | Live Key Secret |
 | `RAZORPAY_WEBHOOK_SECRET` | Test webhook secret | Live webhook secret |
-| `PAYMENT_TEST_TOKEN` | Preview-only owner code | Separate live owner code |
 | `DATABASE_URL` | Preview/test database | Production database |
 
 Mark every value sensitive. Although the Key ID is designed to be public, there
@@ -164,8 +151,7 @@ with a newly created server order.
 
 Important:
 
-- Never prefix the Key Secret, webhook secret, test token, or database URL with
-  `VITE_`.
+- Never prefix the Key Secret, webhook secret, or database URL with `VITE_`.
 - Never commit `.env`, `.env.local`, or downloaded credential files.
 - Use different secrets in Preview and Production.
 - After changing variables, redeploy; an existing deployment does not
@@ -197,13 +183,11 @@ Then use Razorpay Test Mode to complete all of these:
 7. Replay the same webhook and confirm it is reported as a duplicate.
 8. Send a webhook with a bad signature and confirm HTTP 400.
 9. Alter `amount` in a browser request and confirm the Razorpay order remains
-   exactly `100` paise.
+   exactly `3,000,000` paise.
 10. Confirm `/api/payments/status` never returns `paid` for an unpaid order.
 11. Confirm a delayed failure event cannot downgrade a paid order.
 12. Check mobile and desktop layouts, policy links, keyboard navigation,
     loading states, and visible references.
-13. Confirm a missing or incorrect owner verification code returns HTTP 403 and
-    creates no Razorpay order.
 
 For a successful test, reconcile four records:
 
@@ -229,49 +213,18 @@ Only the Razorpay account Owner/Admin should do the following:
 7. Put the live values only in Vercel's **Production** environment.
 8. Confirm the Production `DATABASE_URL` points to the production database.
 9. Redeploy production.
-10. Confirm `/pricing` displays ₹30,000 and has no enabled payment form.
-11. Confirm `/payment-verification` displays ₹1, “Owner verification only,”
-    and “Not a package purchase.”
+10. Confirm `/pricing`, the server configuration, terms, and refund policy all
+    state INR 30,000.
+11. Confirm `/pricing` has the enabled Razorpay checkout form.
 12. Confirm no `rzp_test_` value is present in Production settings.
-13. Confirm the Production `PAYMENT_TEST_TOKEN` is long, unique, and known only
-    to the owner.
+13. Confirm automatic capture is enabled in Razorpay Live Mode.
+14. Have a second person verify the displayed and server-side amount before
+    announcing the checkout publicly.
 
-### Run the INR 1 live website verification
-
-Open the production `/payment-verification` page yourself, enter the private
-verification code, and pay INR 1 using an owner-controlled payment method. Do
-not share the route or code. This verifies the actual website integration and
-settlement route.
-
-Check all of the following:
-
-- The browser shows a verified receipt/reference.
-- Payment is `captured`.
-- The order is `paid`.
-- The live webhook delivery shows HTTP 200.
-- The matching Neon `payment_orders` row is `paid`.
-- Settlement is `processed`.
-- Settlement UTR/reference is available.
-- The exact intended bank account received the net settlement.
-- Razorpay fees/taxes in the settlement report are understood.
-
-Test Mode cannot prove bank routing. A captured payment is also not the same as
-a bank settlement.
-
-### Switch from verification mode to the public package
-
-Only after the INR 1 bank credit is reconciled:
-
-1. Change `api/_lib/payment-config.js` to name the Complete Counseling Package,
-   set `amount: 3_000_000`, and set `testMode: false`.
-2. Enable the verified checkout form on `/pricing` and remove the temporary
-   `/payment-verification` route.
-3. Update the amount assertions in payment tests back to `3_000_000`.
-4. Run tests, lint, build, and the dependency audit.
-5. Have a second person verify that UI, server configuration, Razorpay order
-   amount, terms, and refund policy all say INR 30,000.
-6. Deploy. The private verification-code field and test warning then disappear,
-   and the server stops requiring `PAYMENT_TEST_TOKEN`.
+The integration was validated before launch with Test Mode success/failure
+transactions and a restricted INR 1 Live Mode payment. That live payment was
+captured, verified by signed webhooks, recorded in the production database, and
+assigned to a Razorpay settlement.
 
 Never display one amount while charging another.
 

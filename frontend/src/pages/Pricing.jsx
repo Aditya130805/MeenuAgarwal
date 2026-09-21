@@ -20,9 +20,6 @@ import {
   PAYMENT_SUCCESS_MESSAGE,
   PAYMENT_POLL_ATTEMPTS,
   PAYMENT_POLL_INTERVAL_MS,
-  VERIFICATION_NAME,
-  VERIFICATION_PRICE_DISPLAY,
-  VERIFICATION_PRICE_RUPEES,
 } from '../config/payments';
 
 const initialCustomer = { name: '', email: '', phone: '' };
@@ -51,21 +48,13 @@ const loadRazorpay = () =>
     document.body.appendChild(script);
   });
 
-const Pricing = ({ verificationMode = false }) => {
+const Pricing = () => {
   const [customer, setCustomer] = useState(initialCustomer);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [testToken, setTestToken] = useState('');
   const [paymentState, setPaymentState] = useState('idle');
   const [message, setMessage] = useState('');
   const [reference, setReference] = useState('');
   const pollingCancelled = useRef(false);
-  const displayName = verificationMode ? VERIFICATION_NAME : PACKAGE_NAME;
-  const displayPrice = verificationMode
-    ? VERIFICATION_PRICE_DISPLAY
-    : PACKAGE_PRICE_DISPLAY;
-  const displayPriceRupees = verificationMode
-    ? VERIFICATION_PRICE_RUPEES
-    : PACKAGE_PRICE_RUPEES;
 
   useEffect(() => {
     pollingCancelled.current = false;
@@ -73,31 +62,6 @@ const Pricing = ({ verificationMode = false }) => {
       pollingCancelled.current = true;
     };
   }, []);
-
-  useEffect(() => {
-    if (!verificationMode) return undefined;
-
-    const existingMeta = document.querySelector('meta[name="robots"]');
-    const previousContent = existingMeta?.getAttribute('content');
-    const robotsMeta = existingMeta || document.createElement('meta');
-    const previousTitle = document.title;
-
-    if (!existingMeta) {
-      robotsMeta.setAttribute('name', 'robots');
-      document.head.appendChild(robotsMeta);
-    }
-    robotsMeta.setAttribute('content', 'noindex, nofollow, noarchive');
-    document.title = 'Payment Verification | Meenu Agarwal';
-
-    return () => {
-      document.title = previousTitle;
-      if (existingMeta && previousContent !== null) {
-        robotsMeta.setAttribute('content', previousContent);
-      } else {
-        robotsMeta.remove();
-      }
-    };
-  }, [verificationMode]);
 
   const updateCustomer = (event) => {
     const { name, value } = event.target;
@@ -132,7 +96,7 @@ const Pricing = ({ verificationMode = false }) => {
 
     setPaymentState('pending');
     setMessage(
-      'Razorpay is still confirming the ₹1 verification payment. Keep the reference number and do not pay again while we reconcile it.',
+      'Razorpay is still confirming the payment. Keep your reference number and do not pay again. We will verify it before onboarding.',
     );
   };
 
@@ -151,7 +115,7 @@ const Pricing = ({ verificationMode = false }) => {
       const orderResponse = await fetch('/api/payments/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...customer, acceptedTerms, testToken }),
+        body: JSON.stringify({ ...customer, acceptedTerms }),
       });
       const order = await orderResponse.json();
 
@@ -168,7 +132,7 @@ const Pricing = ({ verificationMode = false }) => {
         amount: order.amount,
         currency: order.currency,
         name: 'Meenu Agarwal',
-        description: VERIFICATION_NAME,
+        description: PACKAGE_NAME,
         order_id: order.orderId,
         prefill: customer,
         notes: { receipt: order.receipt },
@@ -262,15 +226,12 @@ const Pricing = ({ verificationMode = false }) => {
               Personal guidance, from first plan to departure
             </p>
             <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
-              {verificationMode
-                ? 'Verify the payment gateway end to end'
-                : 'One complete counseling package'}
+              One complete counseling package
             </h1>
             <div className="mx-auto my-6 h-1 w-24 bg-[var(--coral-color)]" />
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
-              {verificationMode
-                ? 'A restricted ₹1 payment to confirm order creation, capture, signed webhooks, and trusted server-side records before launch.'
-                : 'Clear, one-on-one support for students and families navigating the study-abroad journey—without confusing tiers or hidden add-ons.'}
+              Clear, one-on-one support for students and families navigating the
+              study-abroad journey—without confusing tiers or hidden add-ons.
             </p>
           </div>
         </section>
@@ -281,32 +242,17 @@ const Pricing = ({ verificationMode = false }) => {
               <div className="mb-8 flex flex-col gap-4 border-b border-slate-200 pb-8 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="mb-2 text-sm font-bold uppercase tracking-[0.16em] text-[var(--dark-blue-color)]">
-                    {displayName}
+                    {PACKAGE_NAME}
                   </p>
                   <h2 className="text-4xl font-extrabold text-[var(--dark-blue-color)] sm:text-5xl">
-                    {displayPrice}
+                    {PACKAGE_PRICE_DISPLAY}
                   </h2>
                 </div>
                 <div className="sm:text-right">
-                  <p className="font-semibold text-slate-700">
-                    {verificationMode ? 'Owner verification only' : 'One-time payment'}
-                  </p>
-                  <p className="text-sm text-slate-500">
-                    {verificationMode ? 'Not a package purchase' : 'Including all taxes'}
-                  </p>
+                  <p className="font-semibold text-slate-700">One-time payment</p>
+                  <p className="text-sm text-slate-500">Including all taxes</p>
                 </div>
               </div>
-
-              {verificationMode && (
-                <div className="mb-8 rounded-2xl border border-[rgba(35,105,138,0.18)] bg-[#edf5f7] p-5 text-sm leading-relaxed text-slate-700">
-                  <strong className="text-[var(--dark-blue-color)]">
-                    Live gateway verification mode.
-                  </strong>{' '}
-                  This ₹1 payment does not purchase or activate the counseling
-                  package. It exists only to prove that money is captured,
-                  recorded, and settled to the intended bank account.
-                </div>
-              )}
 
               <h3 className="mb-5 text-xl font-bold text-slate-900">
                 What your package includes
@@ -333,9 +279,8 @@ const Pricing = ({ verificationMode = false }) => {
                       What happens after payment?
                     </p>
                     <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                      {verificationMode
-                        ? 'We will reconcile the Razorpay order, captured payment, signed webhook, settlement reference, and final bank credit. No counseling package is activated.'
-                        : 'Once the payment is verified, Meenu will contact you using the details provided here to begin your personal onboarding.'}
+                      Once the payment is verified, Meenu will contact you using
+                      the details provided here to begin your personal onboarding.
                     </p>
                   </div>
                 </div>
@@ -354,37 +299,6 @@ const Pricing = ({ verificationMode = false }) => {
             </div>
 
             <aside className="bg-[#f0f6f8] p-7 sm:p-10 lg:p-12">
-              {!verificationMode ? (
-                <div className="flex h-full flex-col justify-center">
-                  <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[var(--dark-blue-color)] shadow-sm">
-                    <FontAwesomeIcon icon={faShieldHalved} />
-                  </span>
-                  <p className="mb-2 text-sm font-bold uppercase tracking-[0.16em] text-[var(--dark-blue-color)]">
-                    Secure online payment
-                  </p>
-                  <h2 className="text-3xl font-extrabold leading-tight text-slate-900">
-                    Final gateway verification is underway
-                  </h2>
-                  <p className="mt-4 leading-relaxed text-slate-600">
-                    The complete package price is ₹30,000, including all taxes.
-                    Online checkout will open after the payment gateway and
-                    destination bank account have been fully verified.
-                  </p>
-                  <div className="mt-6 rounded-2xl bg-white p-5 text-sm leading-relaxed text-slate-600 shadow-sm">
-                    No payment can currently be initiated from this public page.
-                    This prevents accidental charges while final verification is
-                    completed.
-                  </div>
-                  <Link
-                    to="/book"
-                    className="mt-7 inline-flex min-h-[52px] items-center justify-center rounded-full bg-[var(--coral-color)] px-6 font-bold text-white shadow-[0_8px_20px_rgba(255,112,67,0.3)] transition hover:-translate-y-0.5"
-                  >
-                    Book a free consultation
-                    <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                  </Link>
-                </div>
-              ) : (
-                <>
               <div className="mb-7 flex items-center gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[var(--dark-blue-color)] shadow-sm">
                   <FontAwesomeIcon icon={faLock} />
@@ -496,25 +410,6 @@ const Pricing = ({ verificationMode = false }) => {
                     />
                   </label>
 
-                  {verificationMode && (
-                    <label className="block">
-                      <span className="mb-2 block text-sm font-bold text-slate-700">
-                        Private verification code
-                      </span>
-                      <input
-                        type="password"
-                        value={testToken}
-                        onChange={(event) => setTestToken(event.target.value)}
-                        required
-                        autoComplete="off"
-                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-[var(--light-blue-color)] focus:ring-2 focus:ring-[rgba(35,105,138,0.15)]"
-                      />
-                      <span className="mt-2 block text-xs leading-relaxed text-slate-500">
-                        Must match the owner-only code stored in Vercel.
-                      </span>
-                    </label>
-                  )}
-
                   <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-white p-4 text-sm leading-relaxed text-slate-600">
                     <input
                       type="checkbox"
@@ -553,7 +448,7 @@ const Pricing = ({ verificationMode = false }) => {
                       'Opening secure checkout…'
                     ) : (
                       <>
-                        Pay {displayPrice} verification
+                        Pay {PACKAGE_PRICE_DISPLAY} securely
                         <FontAwesomeIcon
                           icon={faArrowRight}
                           className="ml-2 transition-transform group-hover:translate-x-1"
@@ -568,13 +463,11 @@ const Pricing = ({ verificationMode = false }) => {
                     </p>
                   )}
                   <p className="text-center text-xs leading-relaxed text-slate-500">
-                    Final charge: {displayPrice} {PACKAGE_CURRENCY} (
-                    {displayPriceRupees.toLocaleString('en-IN')} rupees).
+                    Final charge: {PACKAGE_PRICE_DISPLAY} {PACKAGE_CURRENCY} (
+                    {PACKAGE_PRICE_RUPEES.toLocaleString('en-IN')} rupees).
                     We never receive your card, bank, or UPI credentials.
                   </p>
                 </form>
-              )}
-                </>
               )}
             </aside>
           </div>

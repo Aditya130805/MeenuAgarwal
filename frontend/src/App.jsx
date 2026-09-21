@@ -20,10 +20,6 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route
-          path="/payment-verification"
-          element={<Pricing verificationMode />}
-        />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
