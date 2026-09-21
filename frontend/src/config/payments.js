@@ -6,7 +6,7 @@ export const VERIFICATION_NAME = 'Payment Gateway Verification';
 export const VERIFICATION_PRICE_RUPEES = 1;
 export const VERIFICATION_PRICE_DISPLAY = '₹1';
 export const PAYMENT_SUCCESS_MESSAGE =
-  'The ₹1 payment is captured and server-verified. Confirm the signed webhook and provider records next. Test Mode does not create a bank settlement.';
+  'The ₹1 payment is captured and server-verified. Confirm the signed webhook and provider records next. Bank settlement must be reconciled separately.';
 
 export const PACKAGE_INCLUSIONS = [
   'One-on-one profile and goals assessment',
