@@ -3,7 +3,7 @@ export const PACKAGE_PRICE_RUPEES = 30000;
 export const PACKAGE_PRICE_DISPLAY = '₹30,000';
 export const PACKAGE_CURRENCY = 'INR';
 export const PAYMENT_SUCCESS_MESSAGE =
-  'Your ₹30,000 payment is confirmed. Meenu will contact you shortly to begin your personal onboarding.';
+  'Your ₹30,000 payment is confirmed.';
 
 export const PACKAGE_INCLUSIONS = [
   'One-on-one profile and goals assessment',
